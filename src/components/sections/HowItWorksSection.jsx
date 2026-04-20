@@ -25,7 +25,7 @@ export function HowItWorksSection({ howItWorks }) {
 
             <div className="flex flex-col gap-[32px]">
               {howItWorks.steps.map((step, index) => (
-                <Reveal key={step.number} delay={index * 0.06} className="relative w-full max-w-[504px]">
+                <Reveal key={step.number} delay={index * 0.1} duration={0.4} y={15} className="relative w-full max-w-[504px]">
                   <span className="pointer-events-none absolute left-[0px] top-[-10px] font-body text-[60px] font-black leading-[60px] text-border/[0.2]">
                     {step.number}
                   </span>
@@ -54,7 +54,7 @@ export function HowItWorksSection({ howItWorks }) {
               const isRightColumn = index % 2 === 0;
 
               return (
-                <Reveal key={step.number} delay={index * 0.06} className="absolute inset-0">
+                <Reveal key={step.number} delay={index * 0.1} duration={0.4} y={15} className="absolute inset-0">
                   {isRightColumn ? (
                     <>
                       <div className="absolute left-[0px] flex h-[60px] w-[568px] items-center justify-end pr-[64px]" style={{ top: `calc(${rowTop} + 7px)` }}>

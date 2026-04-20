@@ -133,7 +133,7 @@ export function FlowSection({ flow }) {
                   const layout = FLOW_STEP_LAYOUTS[index] ?? { desktopClassName: '' };
 
                   return (
-                    <Reveal key={step} className={['w-full xl:w-[128px]', layout.desktopClassName].join(' ')} delay={index * 0.04}>
+                    <Reveal key={step} className={['w-full xl:w-[128px]', layout.desktopClassName].join(' ')} delay={index * 0.1} duration={0.4} y={15}>
                       <div className="flex w-full flex-col items-center gap-[14px] text-center">
                         <div
                           className={[

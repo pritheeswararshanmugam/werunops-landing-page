@@ -1,4 +1,11 @@
+import { useState } from 'react';
 import { Reveal } from '../ui/Reveal';
+
+const NETLIFY_FORM_NAME = 'contact';
+
+function encodeFormBody(formData) {
+  return new URLSearchParams(Array.from(formData.entries())).toString();
+}
 
 function ReassuranceIcon() {
   return (
@@ -11,6 +18,37 @@ function ReassuranceIcon() {
 }
 
 export function FinalCtaSection({ finalCta }) {
+  const [submitState, setSubmitState] = useState('idle');
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    formData.set('form-name', NETLIFY_FORM_NAME);
+
+    setSubmitState('submitting');
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: encodeFormBody(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Netlify form submission failed');
+      }
+
+      form.reset();
+      setSubmitState('success');
+    } catch (error) {
+      setSubmitState('error');
+    }
+  }
+
   return (
     <section id="contact" className="surface-texture bg-surface px-[32px] py-[128px]">
       <div className="mx-auto flex w-full max-w-[1280px] justify-center">
@@ -30,14 +68,14 @@ export function FinalCtaSection({ finalCta }) {
 
           <Reveal delay={0.08} className="bg-paper px-[24px] py-[48px] sm:px-[40px] sm:py-[64px] lg:px-[80px] lg:pb-[96px] lg:pt-[80px]">
             <form
-              name={finalCta.form.name}
+              name={NETLIFY_FORM_NAME}
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
-              action="/#contact"
+              onSubmit={handleSubmit}
               className="flex w-full max-w-[448px] flex-col gap-[24px]"
             >
-              <input type="hidden" name="form-name" value={finalCta.form.name} />
+              <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
               <p className="hidden">
                 <label>
                   Don’t fill this out if you’re human: <input name="bot-field" />
@@ -60,10 +98,25 @@ export function FinalCtaSection({ finalCta }) {
 
               <button
                 type="submit"
+                disabled={submitState === 'submitting'}
                 className="inline-flex h-[64px] w-full items-center justify-center rounded-[4px] bg-brand px-0 py-[20px] font-display text-[16px] font-black uppercase leading-[24px] tracking-[3.2px] text-paper shadow-[0px_20px_25px_-5px_rgba(249,115,22,0.2),0px_8px_10px_-6px_rgba(249,115,22,0.2)]"
               >
-                {finalCta.form.buttonLabel}
+                {submitState === 'submitting' ? 'Submitting...' : finalCta.form.buttonLabel}
               </button>
+
+              <div aria-live="polite" className="min-h-[24px]">
+                {submitState === 'success' ? (
+                  <p className="font-body text-[14px] font-semibold leading-[20px] text-[#0F766E]">
+                    Thanks. Your request has been sent and we will be in touch shortly.
+                  </p>
+                ) : null}
+
+                {submitState === 'error' ? (
+                  <p className="font-body text-[14px] font-semibold leading-[20px] text-brand">
+                    Submission failed. Please try again or email ops@werunops.au.
+                  </p>
+                ) : null}
+              </div>
 
               <div className="flex flex-col gap-[8px] border-t-[1px] border-border pt-[16px]">
                 <p className="font-body text-[14px] font-medium leading-[20px] text-muted">

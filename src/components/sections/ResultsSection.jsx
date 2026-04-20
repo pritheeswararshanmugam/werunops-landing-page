@@ -11,7 +11,7 @@ export function ResultsSection({ results }) {
 
         <div className="grid gap-[20px] md:grid-cols-2 xl:grid-cols-4">
           {results.cards.map((card, index) => (
-            <Reveal key={card.stat} delay={index * 0.05} className="w-full">
+            <Reveal key={card.stat} delay={index * 0.1} duration={0.4} y={15} className="w-full">
               <article className="flex min-h-[208px] w-full flex-col items-start gap-[16px] rounded-[20px] border border-paper/10 bg-card/[0.96] p-[28px] shadow-[0px_18px_30px_-24px_rgba(0,0,0,0.7)]">
                 <div className="flex min-h-[80px] w-full items-center">
                   <h3 className="font-display text-[36px] font-extrabold leading-[40px] text-brand">{card.stat}</h3>

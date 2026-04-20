@@ -85,14 +85,13 @@ export function ProblemSection({ problem }) {
           </div>
         </Reveal>
 
-        <Reveal className="w-full max-w-[1216px]" delay={0.05}>
-          <div className="grid w-full max-w-[1216px] gap-[20px] md:grid-cols-2 xl:grid-cols-4">
-            {problem.cards.map((card, index) => {
-              const layout = PROBLEM_CARD_LAYOUTS[index];
+        <div className="grid w-full max-w-[1216px] gap-[20px] md:grid-cols-2 xl:grid-cols-4">
+          {problem.cards.map((card, index) => {
+            const layout = PROBLEM_CARD_LAYOUTS[index];
 
-              return (
+            return (
+              <Reveal key={card.title} delay={index * 0.1} duration={0.4} y={15} className="w-full">
                 <article
-                  key={card.title}
                   className={[
                     'box-border flex min-h-[220px] w-full flex-col items-start gap-[18px] rounded-[20px] border p-[32px] ring-1 ring-paper/80 shadow-[0px_18px_30px_-24px_rgba(9,20,38,0.35)]',
                     layout.backgroundClass,
@@ -113,10 +112,10 @@ export function ProblemSection({ problem }) {
                     </p>
                   </div>
                 </article>
-              );
-            })}
-          </div>
-        </Reveal>
+              </Reveal>
+            );
+          })}
+        </div>
 
         <Reveal className="w-full max-w-[1216px]" delay={0.08}>
           <p className="w-full font-display text-[24px] font-extrabold uppercase leading-[32px] tracking-[-0.6px] text-brand">
