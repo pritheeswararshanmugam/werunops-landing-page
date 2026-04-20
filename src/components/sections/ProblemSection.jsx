@@ -1,10 +1,10 @@
 import { Reveal } from '../ui/Reveal';
 
 const PROBLEM_CARD_LAYOUTS = [
-  { backgroundClass: 'bg-paper' },
-  { backgroundClass: 'bg-panel' },
-  { backgroundClass: 'bg-paper' },
-  { backgroundClass: 'bg-panel' },
+  { backgroundClass: 'bg-paper', borderClass: 'border-ink/10' },
+  { backgroundClass: 'bg-panel', borderClass: 'border-brand/12' },
+  { backgroundClass: 'bg-paper', borderClass: 'border-ink/10' },
+  { backgroundClass: 'bg-panel', borderClass: 'border-brand/12' },
 ];
 
 function QuotesLateIcon({ className = 'h-[32px] w-[32px]' }) {
@@ -75,7 +75,7 @@ function ProblemIcon({ type, className }) {
 
 export function ProblemSection({ problem }) {
   return (
-    <section id="problem" className="surface-texture bg-surface py-[128px]">
+    <section id="problem" className="desktop-snap-section surface-texture bg-surface py-[128px]">
       <div className="container-shell flex flex-col items-start gap-[48px]">
         <Reveal className="w-full max-w-[1216px]">
           <div className="w-full max-w-[1216px] pb-[32px]">
@@ -94,8 +94,9 @@ export function ProblemSection({ problem }) {
                 <article
                   key={card.title}
                   className={[
-                    'box-border flex min-h-[220px] w-full flex-col items-start gap-[18px] rounded-[20px] border border-border/15 p-[32px] shadow-[0px_18px_30px_-24px_rgba(9,20,38,0.35)]',
+                    'box-border flex min-h-[220px] w-full flex-col items-start gap-[18px] rounded-[20px] border p-[32px] ring-1 ring-paper/80 shadow-[0px_18px_30px_-24px_rgba(9,20,38,0.35)]',
                     layout.backgroundClass,
+                    layout.borderClass,
                   ].join(' ')}
                 >
                   <span className="inline-flex h-[64px] w-[64px] items-center justify-center rounded-[18px] border border-brand/15 bg-brand/[0.08] text-brand">

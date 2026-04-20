@@ -2,8 +2,8 @@ export const landingContent = {
   navItems: [
     { label: 'Home', href: '#home' },
     { label: 'Value', href: '#problem' },
-    { label: 'How It Works', href: '#how-it-works' },
     { label: 'Results', href: '#results' },
+    { label: 'How It Works', href: '#how-it-works' },
     { label: 'Pricing', href: '#pricing' },
   ],
   hero: {

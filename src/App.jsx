@@ -15,10 +15,10 @@ import { Footer } from './components/sections/Footer';
 
 function App() {
   return (
-    <div className="min-h-screen bg-surface text-ink">
+    <div data-scroll-shell="true" className="min-h-screen overflow-x-hidden bg-surface text-ink desktop-snap-root">
       <Header navItems={landingContent.navItems} />
 
-      <main className="overflow-hidden">
+      <main className="contents">
         <HeroSection hero={landingContent.hero} />
         <ProblemSection problem={landingContent.problem} />
         <FlowSection flow={landingContent.flow} />
@@ -29,7 +29,7 @@ function App() {
 
         <PricingSection pricing={landingContent.pricing} />
 
-        <section className="bg-ink px-[32px] py-[128px]">
+        <section className="desktop-snap-section bg-ink px-[32px] py-[128px]">
           <div className="mx-auto grid w-full max-w-[1216px] gap-[80px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
             <ObjectionSection objection={landingContent.objection} />
             <TrustSection trust={landingContent.trust} />

@@ -2,6 +2,37 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { landingContent } from '../../data/landingContent';
 
+function scrollToTarget(hash) {
+  if (typeof window === 'undefined' || !hash?.startsWith('#')) {
+    return;
+  }
+
+  const target = document.querySelector(hash);
+
+  if (!target) {
+    return;
+  }
+
+  const header = document.querySelector('[data-site-header="true"]');
+  const headerHeight = header ? header.getBoundingClientRect().height : 72;
+  window.history.replaceState(null, '', hash);
+
+  if (window.matchMedia('(min-width: 1024px)').matches) {
+    const shell = document.querySelector('[data-scroll-shell="true"]');
+
+    if (shell) {
+      const shellRect = shell.getBoundingClientRect();
+      const top = target.getBoundingClientRect().top - shellRect.top + shell.scrollTop - headerHeight;
+
+      shell.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      return;
+    }
+  }
+
+  const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+  window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+}
+
 export function Header({ navItems, cta }) {
   const [isOpen, setIsOpen] = useState(false);
   const resolvedCta = cta ?? landingContent.hero.primaryCta;
@@ -10,26 +41,56 @@ export function Header({ navItems, cta }) {
   const ctaClassName =
     'inline-flex h-[40px] items-center justify-center rounded-[4px] bg-brand px-[24px] py-[10px] font-body text-[14px] font-[700] leading-[20px] tracking-[1.4px] uppercase text-paper';
 
+  function handleNavClick(event, href, closeMenu = false) {
+    if (!href?.startsWith('#')) {
+      if (closeMenu) {
+        setIsOpen(false);
+      }
+
+      return;
+    }
+
+    event.preventDefault();
+
+    if (closeMenu) {
+      setIsOpen(false);
+    }
+
+    window.setTimeout(() => {
+      scrollToTarget(href);
+    }, closeMenu ? 120 : 0);
+  }
+
   return (
-    <header className="sticky top-0 z-40 bg-page/90 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+    <header data-site-header="true" className="sticky top-0 z-50 border-b border-border/10 bg-page shadow-[0px_14px_28px_-24px_rgba(9,20,38,0.45)]">
       <div className="mx-auto box-border flex h-[72px] w-full max-w-[1280px] items-center justify-between px-[32px] lg:grid lg:grid-cols-[104.98px_minmax(0,1fr)_219.22px] lg:gap-[48px]">
         <a
           href="#home"
           className="w-[104.98px] font-body text-[20px] font-[900] leading-[28px] tracking-[-1px] text-ink"
+          onClick={(event) => handleNavClick(event, '#home')}
         >
           WeRunOps.
         </a>
 
         <nav className="hidden h-[24px] items-center justify-center gap-[32px] lg:flex">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className={navLinkClassName}>
+            <a
+              key={item.href}
+              href={item.href}
+              className={navLinkClassName}
+              onClick={(event) => handleNavClick(event, item.href)}
+            >
               {item.label}
             </a>
           ))}
         </nav>
 
         <div className="hidden lg:flex lg:justify-end">
-          <a href={resolvedCta.href} className={[ctaClassName, 'w-[219.22px]'].join(' ')}>
+          <a
+            href={resolvedCta.href}
+            className={[ctaClassName, 'w-[219.22px]'].join(' ')}
+            onClick={(event) => handleNavClick(event, resolvedCta.href)}
+          >
             {resolvedCta.label}
           </a>
         </div>
@@ -79,7 +140,7 @@ export function Header({ navItems, cta }) {
                   key={item.href}
                   href={item.href}
                   className={navLinkClassName}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(event) => handleNavClick(event, item.href, true)}
                 >
                   {item.label}
                 </a>
@@ -88,7 +149,7 @@ export function Header({ navItems, cta }) {
               <a
                 href={resolvedCta.href}
                 className={[ctaClassName, 'mt-[4px] w-full'].join(' ')}
-                onClick={() => setIsOpen(false)}
+                onClick={(event) => handleNavClick(event, resolvedCta.href, true)}
               >
                 {resolvedCta.label}
               </a>

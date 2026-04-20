@@ -5,13 +5,13 @@ export function HeroSection({ hero }) {
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-ink text-paper shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+      className="desktop-snap-section relative overflow-hidden bg-ink text-paper shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
     >
       <div className="pointer-events-none absolute inset-0 bg-hero-radial opacity-[0.1]" />
 
-      <div className="relative mx-auto box-border w-full max-w-[1280px] px-[32px] pt-[128px] pb-[128px] min-[1280px]:pt-[192px]">
-        <div className="grid items-start gap-[64px] lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)] lg:items-center lg:gap-[28px] min-[1280px]:h-[478px] min-[1280px]:grid-cols-[576px_576px] min-[1280px]:gap-[64px]">
-          <Reveal className="flex w-full max-w-[608px] flex-col items-start gap-[24px] lg:max-w-none lg:pr-[18px] min-[1280px]:w-[576px] min-[1280px]:max-w-[576px] min-[1280px]:translate-y-[-18.5px] min-[1280px]:pr-0">
+      <div className="relative mx-auto box-border w-full max-w-[1280px] px-[32px] pt-[128px] pb-[128px] lg:py-0">
+        <div className="grid items-start gap-[64px] lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-center lg:gap-[36px] min-[1280px]:h-[478px] min-[1280px]:grid-cols-[520px_632px] min-[1280px]:gap-[64px]">
+          <Reveal className="flex w-full max-w-[608px] flex-col items-start gap-[24px] lg:max-w-none lg:pr-[8px] min-[1280px]:w-[520px] min-[1280px]:max-w-[520px] min-[1280px]:translate-y-[-18.5px] min-[1280px]:pr-0">
             <span className="block w-full max-w-[576px] font-display text-[12px] font-[700] leading-[16px] tracking-[2.4px] uppercase text-brand">
               {hero.eyebrow}
             </span>
@@ -91,8 +91,8 @@ export function HeroSection({ hero }) {
             </div>
           </Reveal>
 
-          <Reveal delay={0.08} className="relative h-[392px] w-full max-w-[576px] shrink-0 lg:ml-auto lg:h-[400px] lg:max-w-none min-[1280px]:h-[432px] min-[1280px]:w-[576px] min-[1280px]:max-w-[576px] min-[1280px]:translate-y-[23px]">
-            <div className="relative mx-auto h-[392px] w-full max-w-[548px] lg:ml-auto lg:h-[400px] lg:max-w-none min-[1280px]:h-[432px] min-[1280px]:max-w-[576px]">
+          <Reveal delay={0.08} className="relative h-[392px] w-full max-w-[632px] shrink-0 lg:ml-auto lg:h-[400px] lg:max-w-none min-[1280px]:h-[432px] min-[1280px]:w-[632px] min-[1280px]:max-w-[632px] min-[1280px]:translate-y-[23px]">
+            <div className="relative mx-auto h-[392px] w-full max-w-[632px] lg:ml-auto lg:h-[400px] lg:max-w-none min-[1280px]:h-[432px] min-[1280px]:max-w-[632px]">
               <div className="pointer-events-none absolute inset-[-16px] rounded-[8px] bg-brand/10 blur-[32px]" />
               <MediaPlaceholder variant="dashboard" className="relative h-[392px] w-full lg:h-[400px] min-[1280px]:h-[432px]" />
             </div>

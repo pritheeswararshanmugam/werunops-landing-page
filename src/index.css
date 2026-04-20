@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 :root {
+  --header-height: 72px;
   --color-ink: 9 20 38;
   --color-brand: 235 105 5;
   --color-paper: 255 255 255;
@@ -21,6 +22,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
   }
 
   body {
@@ -48,7 +50,7 @@
   }
 
   [id] {
-    scroll-margin-top: 6rem;
+    scroll-margin-top: var(--header-height);
   }
 
   ::selection {
@@ -105,5 +107,26 @@
 
   .button-secondary {
     @apply inline-flex items-center justify-center rounded-[0.25rem] border-2 border-ink px-6 py-4 font-body text-sm font-black uppercase tracking-[0.22em] text-ink transition duration-200 hover:-translate-y-0.5 hover:bg-ink hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink;
+  }
+}
+
+@media (min-width: 1024px) {
+  .desktop-snap-root {
+    height: 100dvh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: var(--header-height);
+    overscroll-behavior-y: contain;
+  }
+
+  .desktop-snap-section {
+    min-height: calc(100dvh - var(--header-height));
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
   }
 }

@@ -87,6 +87,17 @@ function FlowIcon({ step }) {
     );
   }
 
+  if (step === 'Payment') {
+    return (
+      <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="4.25" y="6.25" width="15.5" height="11.5" rx="2" />
+        <path d="M4.75 10h14.5" />
+        <path d="M8.5 14h2.75" />
+        <path d="M14.15 13.2c-.22-.76-.84-1.12-1.89-1.12-.97 0-1.62.43-1.62 1.1 0 .74.65 1 1.74 1.25 1.09.25 2.05.54 2.05 1.58 0 .92-.76 1.47-1.94 1.47-.98 0-1.73-.37-2.02-1.08" />
+      </svg>
+    );
+  }
+
   return (
     <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="8.25" />
@@ -98,7 +109,7 @@ function FlowIcon({ step }) {
 
 export function FlowSection({ flow }) {
   return (
-    <section id="system" className="surface-texture bg-surface py-[88px] lg:py-[96px] xl:py-[116px]">
+    <section id="system" className="desktop-snap-section surface-texture bg-surface py-[88px] lg:py-[96px] xl:py-[116px]">
       <div className="container-shell">
         <div className="mx-auto flex w-full max-w-[1216px] flex-col items-center">
           <Reveal className="w-full">

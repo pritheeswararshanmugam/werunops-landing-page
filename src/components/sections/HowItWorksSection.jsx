@@ -6,8 +6,8 @@ const DESKTOP_DOT_TOPS = ['29px', '103px', '177px', '251px'];
 
 export function HowItWorksSection({ howItWorks }) {
   return (
-    <section id="how-it-works" className="surface-texture bg-surface py-[128px]">
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-[96px] px-[32px]">
+    <section id="how-it-works" className="desktop-snap-section surface-texture bg-surface py-[128px]">
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-[72px] px-[32px] md:gap-[96px]">
         <Reveal className="w-full">
           <div className="mx-auto flex w-full max-w-[1216px] flex-col items-center gap-[24px]">
             <SectionHeading
@@ -20,7 +20,7 @@ export function HowItWorksSection({ howItWorks }) {
         </Reveal>
 
         <div className="w-full max-w-[1216px]">
-          <div className="relative w-full max-w-[568px] pl-[40px] lg:hidden">
+          <div className="relative mt-[8px] w-full max-w-[568px] pl-[40px] pt-[20px] lg:hidden">
             <div className="pointer-events-none absolute left-[7.5px] top-[36px] bottom-[36px] w-[1px] bg-border/[0.3]" />
 
             <div className="flex flex-col gap-[32px]">

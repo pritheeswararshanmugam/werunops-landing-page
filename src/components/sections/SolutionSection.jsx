@@ -4,8 +4,8 @@ import { MediaPlaceholder } from '../ui/MediaPlaceholder';
 
 function SolutionTick() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-[14px] w-[14px]" fill="none">
-      <path d="M5 10.5 8.2 13.7 15 6.9" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-[16px] w-[16px]" fill="none">
+      <path d="M4.8 10.4 8.15 13.75 15.25 6.65" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -14,9 +14,9 @@ export function SolutionSection({ solution }) {
   return (
     <section
       id="solution"
-      className="paper-texture bg-paper shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+      className="desktop-snap-section paper-texture bg-paper shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
     >
-      <div className="mx-auto box-border w-full max-w-[1280px] px-[32px] py-[128px]">
+      <div className="mx-auto box-border w-full max-w-[1280px] px-[32px] py-[128px] lg:py-0">
         <div className="grid items-start gap-[64px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-[40px] min-[1280px]:h-[518.5px] min-[1280px]:grid-cols-[568px_568px] min-[1280px]:gap-[80px]">
           <Reveal className="w-full max-w-[568px] lg:max-w-none min-[1280px]:translate-y-[3.25px]">
             <div className="w-full max-w-[568px] lg:max-w-none">
@@ -33,7 +33,7 @@ export function SolutionSection({ solution }) {
             <ul className="flex w-full max-w-[568px] flex-col gap-[24px] px-[0px] pt-[24px] pb-[32px]">
               {solution.bullets.map((bullet) => (
                 <li key={bullet} className="flex items-start gap-[16px]">
-                  <span className="flex h-[28px] w-[28px] flex-none items-center justify-center rounded-[999px] border border-ink/8 bg-ink/[0.05] text-brand shadow-[0px_10px_20px_-16px_rgba(9,20,38,0.45)]">
+                  <span className="flex h-[34px] w-[34px] flex-none items-center justify-center rounded-[12px] border border-brand/20 bg-brand/[0.12] text-brand shadow-[0px_14px_24px_-18px_rgba(9,20,38,0.5)]">
                     <SolutionTick />
                   </span>
                   <span className="font-display text-[16px] font-[700] leading-[24px] text-ink">

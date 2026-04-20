@@ -3,7 +3,7 @@ import { SectionHeading } from '../ui/SectionHeading';
 
 export function ResultsSection({ results }) {
   return (
-    <section id="results" className="bg-ink py-[128px]">
+    <section id="results" className="desktop-snap-section bg-ink py-[128px]">
       <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-[72px] px-[32px]">
         <Reveal className="w-full">
           <SectionHeading align="center" title={results.title} className="[&_h2]:max-w-[642.42px] [&_h2]:text-paper" />

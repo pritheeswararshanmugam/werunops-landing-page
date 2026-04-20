@@ -165,7 +165,7 @@ function ControlVisual({ stat }) {
 
 export function ControlSection({ control }) {
   return (
-    <section id="control" className="surface-texture bg-section py-[128px] text-ink" style={SECTION_SHADOW_STYLE}>
+    <section id="control" className="desktop-snap-section surface-texture bg-section py-[128px] text-ink" style={SECTION_SHADOW_STYLE}>
       <div className="relative mx-auto flex w-full max-w-[1280px] flex-col gap-[48px] px-[20px] md:px-[32px] lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-[40px] min-[1280px]:block min-[1280px]:h-[568px] min-[1280px]:px-0">
         <Reveal className="flex w-full flex-col gap-[24px] lg:min-w-0 min-[1280px]:absolute min-[1280px]:left-[32px] min-[1280px]:top-[78px] min-[1280px]:h-[412px] min-[1280px]:w-[568px]">
           <h2 className="w-full max-w-[440px] font-display text-[36px] font-[800] leading-[40px] tracking-[-0.9px] text-ink min-[1280px]:w-[568px] min-[1280px]:max-w-none">
