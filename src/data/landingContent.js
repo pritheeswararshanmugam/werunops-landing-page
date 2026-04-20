@@ -2,7 +2,7 @@ export const landingContent = {
   navItems: [
     { label: 'Home', href: '#home' },
     { label: 'Value', href: '#problem' },
-    { label: 'Howitworks', href: '#how-it-works' },
+    { label: 'How It Works', href: '#how-it-works' },
     { label: 'Results', href: '#results' },
     { label: 'Pricing', href: '#pricing' },
   ],

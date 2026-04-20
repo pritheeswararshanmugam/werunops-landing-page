@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { landingContent } from '../../data/landingContent';
 
-export function Header({ navItems }) {
+export function Header({ navItems, cta }) {
   const [isOpen, setIsOpen] = useState(false);
+  const resolvedCta = cta ?? landingContent.hero.primaryCta;
   const navLinkClassName =
     'font-display text-[16px] font-[700] leading-[24px] tracking-[-0.4px] text-ink';
+  const ctaClassName =
+    'inline-flex h-[40px] items-center justify-center rounded-[4px] bg-brand px-[24px] py-[10px] font-body text-[14px] font-[700] leading-[20px] tracking-[1.4px] uppercase text-paper';
 
   return (
     <header className="sticky top-0 z-40 bg-page/90 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
-      <div className="mx-auto box-border flex h-[72px] w-full max-w-[1280px] items-center justify-between px-[32px] lg:grid lg:grid-cols-[104.98px_minmax(0,1fr)] lg:gap-[120px]">
+      <div className="mx-auto box-border flex h-[72px] w-full max-w-[1280px] items-center justify-between px-[32px] lg:grid lg:grid-cols-[104.98px_minmax(0,1fr)_219.22px] lg:gap-[48px]">
         <a
           href="#home"
           className="w-[104.98px] font-body text-[20px] font-[900] leading-[28px] tracking-[-1px] text-ink"
@@ -16,13 +20,19 @@ export function Header({ navItems }) {
           WeRunOps.
         </a>
 
-        <nav className="hidden h-[24px] items-center justify-end gap-[32px] lg:flex">
+        <nav className="hidden h-[24px] items-center justify-center gap-[32px] lg:flex">
           {navItems.map((item) => (
             <a key={item.href} href={item.href} className={navLinkClassName}>
               {item.label}
             </a>
           ))}
         </nav>
+
+        <div className="hidden lg:flex lg:justify-end">
+          <a href={resolvedCta.href} className={[ctaClassName, 'w-[219.22px]'].join(' ')}>
+            {resolvedCta.label}
+          </a>
+        </div>
 
         <button
           type="button"
@@ -71,9 +81,17 @@ export function Header({ navItems }) {
                   className={navLinkClassName}
                   onClick={() => setIsOpen(false)}
                 >
-                {item.label}
-              </a>
+                  {item.label}
+                </a>
               ))}
+
+              <a
+                href={resolvedCta.href}
+                className={[ctaClassName, 'mt-[4px] w-full'].join(' ')}
+                onClick={() => setIsOpen(false)}
+              >
+                {resolvedCta.label}
+              </a>
             </div>
           </motion.div>
         ) : null}
