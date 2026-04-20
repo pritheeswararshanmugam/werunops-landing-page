@@ -17,18 +17,6 @@ function scrollToTarget(hash) {
   const headerHeight = header ? header.getBoundingClientRect().height : 72;
   window.history.replaceState(null, '', hash);
 
-  if (window.matchMedia('(min-width: 1024px)').matches) {
-    const shell = document.querySelector('[data-scroll-shell="true"]');
-
-    if (shell) {
-      const shellRect = shell.getBoundingClientRect();
-      const top = target.getBoundingClientRect().top - shellRect.top + shell.scrollTop;
-
-      shell.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-      return;
-    }
-  }
-
   const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
   window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
 }

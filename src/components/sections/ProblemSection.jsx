@@ -75,7 +75,7 @@ function ProblemIcon({ type, className }) {
 
 export function ProblemSection({ problem }) {
   return (
-    <section id="problem" className="desktop-snap-section surface-texture bg-surface py-[128px]">
+    <section id="problem" className="surface-texture bg-surface py-[128px]">
       <div className="container-shell flex flex-col items-start gap-[48px]">
         <Reveal className="w-full max-w-[1216px]">
           <div className="w-full max-w-[1216px] pb-[32px]">

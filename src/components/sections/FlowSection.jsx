@@ -109,7 +109,7 @@ function FlowIcon({ step }) {
 
 export function FlowSection({ flow }) {
   return (
-    <section id="system" className="desktop-snap-section surface-texture bg-surface py-[88px] lg:py-[96px] xl:py-[116px]">
+    <section id="system" className="surface-texture bg-surface py-[88px] lg:py-[96px] xl:py-[116px]">
       <div className="container-shell">
         <div className="mx-auto flex w-full max-w-[1216px] flex-col items-center">
           <Reveal className="w-full">

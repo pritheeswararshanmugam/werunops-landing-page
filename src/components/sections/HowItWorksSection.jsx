@@ -6,7 +6,7 @@ const DESKTOP_DOT_TOPS = ['29px', '103px', '177px', '251px'];
 
 export function HowItWorksSection({ howItWorks }) {
   return (
-    <section id="how-it-works" className="desktop-snap-section surface-texture bg-surface py-[128px]">
+    <section id="how-it-works" className="surface-texture bg-surface py-[128px]">
       <div className="mx-auto flex w-full max-w-[1280px] flex-col items-center gap-[72px] px-[32px] md:gap-[96px]">
         <Reveal className="w-full">
           <div className="mx-auto flex w-full max-w-[1216px] flex-col items-center gap-[24px]">

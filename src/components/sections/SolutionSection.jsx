@@ -14,10 +14,10 @@ export function SolutionSection({ solution }) {
   return (
     <section
       id="solution"
-      className="desktop-snap-section paper-texture bg-paper shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+      className="paper-texture bg-paper shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
     >
-      <div className="mx-auto box-border w-full max-w-[1280px] px-[32px] py-[128px] lg:py-0">
-        <div className="grid items-start gap-[64px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-[40px] min-[1280px]:h-[518.5px] min-[1280px]:grid-cols-[568px_568px] min-[1280px]:gap-[80px]">
+      <div className="mx-auto box-border w-full max-w-[1280px] px-[32px] py-[128px]">
+        <div className="grid items-start gap-[64px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-[40px] min-[1280px]:grid-cols-[568px_568px] min-[1280px]:gap-[80px]">
           <Reveal className="w-full max-w-[568px] lg:max-w-none min-[1280px]:translate-y-[3.25px]">
             <div className="w-full max-w-[568px] lg:max-w-none">
               <MediaPlaceholder
@@ -25,9 +25,9 @@ export function SolutionSection({ solution }) {
                 className="paper-texture h-[420px] w-full max-w-[512px] lg:h-[440px] lg:max-w-none min-[1280px]:h-[512px] min-[1280px]:max-w-[512px]"
               />
             </div>
-        </Reveal>
+          </Reveal>
 
-          <Reveal delay={0.08} className="flex w-full max-w-[568px] flex-col gap-[16px] lg:max-w-none min-[1280px]:h-[499px] min-[1280px]:w-[568px] min-[1280px]:translate-y-[9.75px]">
+          <Reveal delay={0.08} className="flex w-full max-w-[568px] flex-col gap-[16px] lg:max-w-none min-[1280px]:w-[568px] min-[1280px]:translate-y-[9.75px]">
             <SectionHeading align="left" title={solution.title} description={solution.description} />
 
             <ul className="flex w-full max-w-[568px] flex-col gap-[24px] px-[0px] pt-[24px] pb-[32px]">

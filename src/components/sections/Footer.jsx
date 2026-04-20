@@ -45,7 +45,7 @@ function FooterLinkColumn({ title, items, widthClassName }) {
 
 export function Footer({ footer }) {
   return (
-    <footer className="bg-[#0F172A] px-[48px] py-[80px] lg:snap-end">
+    <footer className="bg-[#0F172A] px-[48px] py-[80px]">
       <div className="mx-auto w-full max-w-[1184px]">
         <Reveal className="flex w-full flex-col items-start gap-[48px] lg:flex-row lg:justify-between lg:gap-[0px]">
           <div className="flex w-full max-w-[281.64px] flex-col items-start gap-[15px]">

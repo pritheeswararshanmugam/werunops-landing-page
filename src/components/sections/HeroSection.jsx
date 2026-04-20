@@ -5,12 +5,12 @@ export function HeroSection({ hero }) {
   return (
     <section
       id="home"
-      className="desktop-snap-section relative overflow-hidden bg-ink text-paper shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+      className="relative overflow-hidden bg-ink text-paper shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
     >
       <div className="pointer-events-none absolute inset-0 bg-hero-radial opacity-[0.1]" />
 
-      <div className="relative mx-auto box-border w-full max-w-[1280px] px-[32px] pt-[128px] pb-[128px] lg:py-0">
-        <div className="grid items-start gap-[64px] lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-center lg:gap-[36px] min-[1280px]:h-[478px] min-[1280px]:grid-cols-[520px_632px] min-[1280px]:gap-[64px]">
+      <div className="relative mx-auto box-border w-full max-w-[1280px] px-[32px] py-[128px]">
+        <div className="grid items-start gap-[64px] lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-center lg:gap-[36px] min-[1280px]:grid-cols-[520px_632px] min-[1280px]:gap-[64px]">
           <Reveal className="w-full max-w-[608px] lg:max-w-none lg:pr-[8px] min-[1280px]:w-[520px] min-[1280px]:max-w-[520px] min-[1280px]:pr-0">
             <div className="flex w-full flex-col items-start gap-[24px] lg:-translate-y-[28px] min-[1280px]:-translate-y-[42px]">
               <span className="block w-full max-w-[576px] font-display text-[12px] font-[700] leading-[16px] tracking-[2.4px] uppercase text-brand">
