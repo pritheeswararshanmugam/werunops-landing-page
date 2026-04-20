@@ -15,10 +15,10 @@ import { Footer } from './components/sections/Footer';
 
 function App() {
   return (
-    <div data-scroll-shell="true" className="min-h-screen overflow-x-hidden bg-surface text-ink desktop-snap-root">
+    <div className="min-h-screen bg-surface text-ink">
       <Header navItems={landingContent.navItems} />
 
-      <main className="contents">
+      <main data-scroll-shell="true" className="desktop-snap-root overflow-x-hidden">
         <HeroSection hero={landingContent.hero} />
         <ProblemSection problem={landingContent.problem} />
         <FlowSection flow={landingContent.flow} />
@@ -37,9 +37,9 @@ function App() {
         </section>
 
         <FinalCtaSection finalCta={landingContent.finalCta} />
-      </main>
 
-      <Footer footer={landingContent.footer} />
+        <Footer footer={landingContent.footer} />
+      </main>
     </div>
   );
 }

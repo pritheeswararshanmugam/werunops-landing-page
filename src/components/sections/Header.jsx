@@ -22,7 +22,7 @@ function scrollToTarget(hash) {
 
     if (shell) {
       const shellRect = shell.getBoundingClientRect();
-      const top = target.getBoundingClientRect().top - shellRect.top + shell.scrollTop - headerHeight;
+      const top = target.getBoundingClientRect().top - shellRect.top + shell.scrollTop;
 
       shell.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
       return;

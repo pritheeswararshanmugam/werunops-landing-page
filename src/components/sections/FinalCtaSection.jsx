@@ -1,5 +1,15 @@
 import { Reveal } from '../ui/Reveal';
 
+function ReassuranceIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-[20px] w-[20px] shrink-0 text-brand" fill="none">
+      <circle cx="10" cy="10" r="8.25" stroke="currentColor" strokeWidth="1.5" opacity="0.28" />
+      <path d="M10 5.75V10L13 11.75" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M10 3.5a6.5 6.5 0 1 1-4.596 1.904" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function FinalCtaSection({ finalCta }) {
   return (
     <section id="contact" className="desktop-snap-section surface-texture bg-surface px-[32px] py-[128px]">
@@ -12,7 +22,7 @@ export function FinalCtaSection({ finalCta }) {
               </h2>
               <p className="max-w-[448px] pb-[16px] text-[18px] leading-[28px] text-faded">{finalCta.description}</p>
               <div className="flex items-center gap-[16px]">
-                <span aria-hidden="true" className="h-[20px] w-[20px] shrink-0 rounded-full bg-brand" />
+                <ReassuranceIcon />
                 <span className="text-[14px] font-medium leading-[20px] text-paper lg:max-w-[215.08px]">{finalCta.reassurance}</span>
               </div>
             </div>
