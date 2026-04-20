@@ -13,7 +13,7 @@ export function PricingSection({ pricing }) {
   const trustSignals = ['Australian-based support', 'Secure process handovers', 'Weekly visibility across every tier'];
 
   return (
-    <section id="pricing" className="bg-paper py-[96px] lg:py-[80px] xl:py-[128px]">
+    <section id="pricing" className="paper-texture bg-paper py-[96px] lg:py-[80px] xl:py-[128px]">
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-[32px]">
         <Reveal className="w-full">
           <SectionHeading

@@ -2,11 +2,19 @@ import { Reveal } from '../ui/Reveal';
 import { SectionHeading } from '../ui/SectionHeading';
 import { MediaPlaceholder } from '../ui/MediaPlaceholder';
 
+function SolutionTick() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 20 20" className="h-[14px] w-[14px]" fill="none">
+      <path d="M5 10.5 8.2 13.7 15 6.9" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export function SolutionSection({ solution }) {
   return (
     <section
       id="solution"
-      className="bg-paper shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
+      className="paper-texture bg-paper shadow-[0px_4px_4px_rgba(0,0,0,0.25)]"
     >
       <div className="mx-auto box-border w-full max-w-[1280px] px-[32px] py-[128px]">
         <div className="grid items-start gap-[64px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-[40px] min-[1280px]:h-[518.5px] min-[1280px]:grid-cols-[568px_568px] min-[1280px]:gap-[80px]">
@@ -14,7 +22,7 @@ export function SolutionSection({ solution }) {
             <div className="w-full max-w-[568px] lg:max-w-none">
               <MediaPlaceholder
                 variant="photo"
-                className="h-[420px] w-full max-w-[512px] lg:h-[440px] lg:max-w-none min-[1280px]:h-[512px] min-[1280px]:max-w-[512px]"
+                className="paper-texture h-[420px] w-full max-w-[512px] lg:h-[440px] lg:max-w-none min-[1280px]:h-[512px] min-[1280px]:max-w-[512px]"
               />
             </div>
         </Reveal>
@@ -25,8 +33,8 @@ export function SolutionSection({ solution }) {
             <ul className="flex w-full max-w-[568px] flex-col gap-[24px] px-[0px] pt-[24px] pb-[32px]">
               {solution.bullets.map((bullet) => (
                 <li key={bullet} className="flex items-start gap-[16px]">
-                  <span className="flex h-[24px] w-[20px] flex-none flex-col pt-[4px]">
-                    <span className="block h-[20px] w-[20px] rounded-[999px] bg-brand" />
+                  <span className="flex h-[28px] w-[28px] flex-none items-center justify-center rounded-[999px] border border-ink/8 bg-ink/[0.05] text-brand shadow-[0px_10px_20px_-16px_rgba(9,20,38,0.45)]">
+                    <SolutionTick />
                   </span>
                   <span className="font-display text-[16px] font-[700] leading-[24px] text-ink">
                     {bullet}

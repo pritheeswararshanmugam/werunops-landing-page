@@ -2,9 +2,9 @@ export const landingContent = {
   navItems: [
     { label: 'Home', href: '#home' },
     { label: 'Value', href: '#problem' },
-    { label: 'Pricing', href: '#pricing' },
+    { label: 'Howitworks', href: '#how-it-works' },
     { label: 'Results', href: '#results' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Pricing', href: '#pricing' },
   ],
   hero: {
     eyebrow: "It's not a time issue.",
@@ -14,7 +14,7 @@ export const landingContent = {
       'From enquiry to payment, we run your entire back office. Built for Australian trades who are done with admin chaos.',
     primaryCta: { label: 'Get My Ops Audit', href: '#contact' },
     secondaryCta: { label: 'See How It Works', href: '#how-it-works' },
-    supportNote: 'Trades, quoting, scheduling, invoicing, follow-up, payment.',
+    supportNote: 'Trades, Quoting, Scheduling, Invoicing, Follow-Up, Payment',
   },
   problem: {
     title: 'Your business isn’t slow. Your operations are.',

@@ -11,7 +11,7 @@ const FLOW_STEP_LAYOUTS = [
 ];
 
 function FlowIcon({ step }) {
-  const common = 'h-[22px] w-[22px]';
+  const common = 'h-[26px] w-[26px]';
 
   if (step === 'Enquiry') {
     return (
@@ -98,7 +98,7 @@ function FlowIcon({ step }) {
 
 export function FlowSection({ flow }) {
   return (
-    <section id="system" className="bg-surface py-[88px] lg:py-[96px] xl:py-[116px]">
+    <section id="system" className="surface-texture bg-surface py-[88px] lg:py-[96px] xl:py-[116px]">
       <div className="container-shell">
         <div className="mx-auto flex w-full max-w-[1216px] flex-col items-center">
           <Reveal className="w-full">
@@ -126,9 +126,19 @@ export function FlowSection({ flow }) {
                       <div className="flex w-full flex-col items-center gap-[14px] text-center">
                         <div
                           className={[
-                            'relative z-[1] grid h-[56px] w-[56px] place-items-center rounded-[999px] border bg-paper',
-                            isLast ? 'border-brand bg-brand text-paper' : 'border-border/10 text-brand',
+                            'relative z-[1] grid h-[64px] w-[64px] place-items-center rounded-[999px] border',
+                            isLast
+                              ? 'border-brand bg-brand text-paper shadow-orange'
+                              : 'border-ink/10 text-ink shadow-[0px_18px_30px_-20px_rgba(9,20,38,0.45)]',
                           ].join(' ')}
+                          style={
+                            isLast
+                              ? undefined
+                              : {
+                                  background:
+                                    'linear-gradient(145deg, rgb(var(--color-paper) / 0.94), rgb(var(--color-ink) / 0.12))',
+                                }
+                          }
                         >
                           <FlowIcon step={step} />
                         </div>

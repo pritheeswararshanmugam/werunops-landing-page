@@ -1,16 +1,14 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-export function Header({ navItems, cta }) {
+export function Header({ navItems }) {
   const [isOpen, setIsOpen] = useState(false);
   const navLinkClassName =
     'font-display text-[16px] font-[700] leading-[24px] tracking-[-0.4px] text-ink';
-  const ctaClassName =
-    'inline-flex h-[40px] items-center justify-center rounded-[4px] bg-brand px-[24px] py-[10px] font-body text-[14px] font-[700] leading-[20px] tracking-[1.4px] uppercase text-paper';
 
   return (
     <header className="sticky top-0 z-40 bg-page/90 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
-      <div className="mx-auto box-border flex h-[72px] w-full max-w-[1280px] items-center justify-between px-[32px] lg:grid lg:grid-cols-[104.98px_359.81px_219.22px] lg:gap-[266px]">
+      <div className="mx-auto box-border flex h-[72px] w-full max-w-[1280px] items-center justify-between px-[32px] lg:grid lg:grid-cols-[104.98px_minmax(0,1fr)] lg:gap-[120px]">
         <a
           href="#home"
           className="w-[104.98px] font-body text-[20px] font-[900] leading-[28px] tracking-[-1px] text-ink"
@@ -18,19 +16,13 @@ export function Header({ navItems, cta }) {
           WeRunOps.
         </a>
 
-        <nav className="hidden h-[24px] w-[359.81px] items-center gap-[32px] lg:flex">
+        <nav className="hidden h-[24px] items-center justify-end gap-[32px] lg:flex">
           {navItems.map((item) => (
             <a key={item.href} href={item.href} className={navLinkClassName}>
               {item.label}
             </a>
           ))}
         </nav>
-
-        <div className="hidden lg:flex lg:justify-end">
-          <a href={cta.href} className={[ctaClassName, 'w-[219.22px]'].join(' ')}>
-            {cta.label}
-          </a>
-        </div>
 
         <button
           type="button"
@@ -82,14 +74,6 @@ export function Header({ navItems, cta }) {
                 {item.label}
               </a>
               ))}
-
-              <a
-                href={cta.href}
-                className={[ctaClassName, 'mt-[4px] w-full'].join(' ')}
-                onClick={() => setIsOpen(false)}
-              >
-                {cta.label}
-              </a>
             </div>
           </motion.div>
         ) : null}

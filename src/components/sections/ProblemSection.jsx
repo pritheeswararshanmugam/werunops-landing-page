@@ -1,26 +1,10 @@
 import { Reveal } from '../ui/Reveal';
 
 const PROBLEM_CARD_LAYOUTS = [
-  {
-    backgroundClass: 'bg-paper',
-    desktopClassName: 'h-[200.15px] lg:absolute lg:left-[1px] lg:top-[1px] lg:w-[303.75px]',
-    iconClassName: 'h-[32.4px] w-[29.7px]',
-  },
-  {
-    backgroundClass: 'bg-panel',
-    desktopClassName: 'h-[197.9px] lg:absolute lg:left-[304.75px] lg:top-[1px] lg:w-[303.75px]',
-    iconClassName: 'h-[30.15px] w-[29.74px]',
-  },
-  {
-    backgroundClass: 'bg-paper',
-    desktopClassName: 'h-[191.75px] lg:absolute lg:left-[608.5px] lg:top-[1px] lg:w-[303.75px]',
-    iconClassName: 'h-[24px] w-[33px]',
-  },
-  {
-    backgroundClass: 'bg-panel',
-    desktopClassName: 'h-[197.82px] lg:absolute lg:left-[912.25px] lg:top-[1px] lg:w-[303.75px]',
-    iconClassName: 'h-[30.08px] w-[30px]',
-  },
+  { backgroundClass: 'bg-paper' },
+  { backgroundClass: 'bg-panel' },
+  { backgroundClass: 'bg-paper' },
+  { backgroundClass: 'bg-panel' },
 ];
 
 function QuotesLateIcon({ className = 'h-[32px] w-[32px]' }) {
@@ -91,7 +75,7 @@ function ProblemIcon({ type, className }) {
 
 export function ProblemSection({ problem }) {
   return (
-    <section id="problem" className="bg-surface py-[128px]">
+    <section id="problem" className="surface-texture bg-surface py-[128px]">
       <div className="container-shell flex flex-col items-start gap-[48px]">
         <Reveal className="w-full max-w-[1216px]">
           <div className="w-full max-w-[1216px] pb-[32px]">
@@ -102,7 +86,7 @@ export function ProblemSection({ problem }) {
         </Reveal>
 
         <Reveal className="w-full max-w-[1216px]" delay={0.05}>
-          <div className="relative w-full max-w-[1216px] overflow-hidden border-l-[1px] border-t-[1px] border-border/20 lg:h-[208.75px]">
+          <div className="grid w-full max-w-[1216px] gap-[20px] md:grid-cols-2 xl:grid-cols-4">
             {problem.cards.map((card, index) => {
               const layout = PROBLEM_CARD_LAYOUTS[index];
 
@@ -110,23 +94,20 @@ export function ProblemSection({ problem }) {
                 <article
                   key={card.title}
                   className={[
-                    'box-border flex w-full flex-col items-start gap-[11px] border-b-[1px] border-r-[1px] border-border/20 p-[40px]',
+                    'box-border flex min-h-[220px] w-full flex-col items-start gap-[18px] rounded-[20px] border border-border/15 p-[32px] shadow-[0px_18px_30px_-24px_rgba(9,20,38,0.35)]',
                     layout.backgroundClass,
-                    layout.desktopClassName,
                   ].join(' ')}
                 >
-                  <span className="inline-flex items-center justify-start text-brand">
-                    <ProblemIcon type={card.icon} className={layout.iconClassName} />
+                  <span className="inline-flex h-[64px] w-[64px] items-center justify-center rounded-[18px] border border-brand/15 bg-brand/[0.08] text-brand">
+                    <ProblemIcon type={card.icon} className="h-[38px] w-[38px]" />
                   </span>
 
-                  <div className="flex w-full flex-col items-start pt-[13px]">
+                  <div className="flex w-full flex-col items-start gap-[10px]">
                     <h3 className="w-full max-w-[222.75px] font-display text-[20px] font-bold leading-[28px] text-ink">
                       {card.title}
                     </h3>
-                  </div>
 
-                  <div className="flex w-full flex-col items-start pb-[0.75px]">
-                    <p className="w-full max-w-[222.75px] font-body text-[14px] font-semibold leading-[23px] text-muted">
+                    <p className="w-full max-w-[222.75px] font-body text-[14px] font-semibold leading-[22px] text-muted">
                       {`→ ${card.detail}`}
                     </p>
                   </div>

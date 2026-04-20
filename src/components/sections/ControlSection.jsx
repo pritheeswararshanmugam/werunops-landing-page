@@ -46,7 +46,7 @@ function ControlFeatureIcon({ index }) {
       aria-hidden="true"
       viewBox={icon.viewBox}
       style={{ width: icon.width, height: icon.height }}
-      className="shrink-0 text-brand"
+      className="shrink-0 scale-[1.45] text-brand"
     >
       <path d={icon.path} fill="currentColor" />
     </svg>
@@ -68,10 +68,10 @@ function ControlPanelArtwork() {
         }}
       />
 
-      <div aria-hidden="true" className="absolute left-[32px] top-[32px] flex gap-[8px]">
-        <span className="h-[8px] w-[8px] rounded-[999px] bg-paper/[0.122]" />
-        <span className="h-[8px] w-[8px] rounded-[999px] bg-paper/[0.122]" />
-        <span className="h-[8px] w-[8px] rounded-[999px] bg-brand" />
+      <div aria-hidden="true" className="absolute left-[32px] top-[32px] flex gap-[10px]">
+        <span className="h-[10px] w-[10px] rounded-[999px] bg-paper/[0.122]" />
+        <span className="h-[10px] w-[10px] rounded-[999px] bg-paper/[0.122]" />
+        <span className="h-[10px] w-[10px] rounded-[999px] bg-brand" />
       </div>
 
       <div aria-hidden="true" className="absolute left-[32px] top-[64px] h-[10px] w-[118px] rounded-[999px] bg-paper/[0.078]" />
@@ -115,20 +115,20 @@ function ControlPanelArtwork() {
         <div className="absolute left-[24px] top-[24px] h-[10px] w-[76px] rounded-[999px] bg-paper/[0.078]" />
         <div className="absolute left-[24px] top-[52px] h-[10px] w-[118px] rounded-[999px] bg-paper/[0.059]" />
         <div className="absolute left-[24px] right-[24px] top-[92px] flex flex-col gap-[14px]">
-          <div className="flex items-center gap-[12px]">
-            <span className="h-[12px] w-[12px] rounded-[999px] bg-brand" />
+          <div className="flex items-center gap-[14px]">
+            <span className="h-[15px] w-[15px] rounded-[999px] bg-brand" />
             <span className="h-[10px] w-[132px] rounded-[999px] bg-paper/[0.078]" />
           </div>
-          <div className="flex items-center gap-[12px]">
-            <span className="h-[12px] w-[12px] rounded-[999px] bg-paper/[0.102]" />
+          <div className="flex items-center gap-[14px]">
+            <span className="h-[15px] w-[15px] rounded-[999px] bg-paper/[0.102]" />
             <span className="h-[10px] w-[112px] rounded-[999px] bg-paper/[0.071]" />
           </div>
-          <div className="flex items-center gap-[12px]">
-            <span className="h-[12px] w-[12px] rounded-[999px] bg-paper/[0.102]" />
+          <div className="flex items-center gap-[14px]">
+            <span className="h-[15px] w-[15px] rounded-[999px] bg-paper/[0.102]" />
             <span className="h-[10px] w-[148px] rounded-[999px] bg-paper/[0.071]" />
           </div>
-          <div className="flex items-center gap-[12px]">
-            <span className="h-[12px] w-[12px] rounded-[999px] bg-brand" />
+          <div className="flex items-center gap-[14px]">
+            <span className="h-[15px] w-[15px] rounded-[999px] bg-brand" />
             <span className="h-[10px] w-[94px] rounded-[999px] bg-paper/[0.078]" />
           </div>
         </div>
@@ -165,7 +165,7 @@ function ControlVisual({ stat }) {
 
 export function ControlSection({ control }) {
   return (
-    <section id="control" className="bg-section py-[128px] text-ink" style={SECTION_SHADOW_STYLE}>
+    <section id="control" className="surface-texture bg-section py-[128px] text-ink" style={SECTION_SHADOW_STYLE}>
       <div className="relative mx-auto flex w-full max-w-[1280px] flex-col gap-[48px] px-[20px] md:px-[32px] lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-[40px] min-[1280px]:block min-[1280px]:h-[568px] min-[1280px]:px-0">
         <Reveal className="flex w-full flex-col gap-[24px] lg:min-w-0 min-[1280px]:absolute min-[1280px]:left-[32px] min-[1280px]:top-[78px] min-[1280px]:h-[412px] min-[1280px]:w-[568px]">
           <h2 className="w-full max-w-[440px] font-display text-[36px] font-[800] leading-[40px] tracking-[-0.9px] text-ink min-[1280px]:w-[568px] min-[1280px]:max-w-none">
@@ -175,7 +175,7 @@ export function ControlSection({ control }) {
           <div className="flex w-full max-w-[456px] flex-col gap-[24px] min-[1280px]:w-[568px] min-[1280px]:max-w-none">
             {control.features.map((feature, index) => (
               <div key={feature} className="flex min-h-[40px] w-full items-center gap-[16px]">
-                <span className="flex h-[40px] w-[40px] shrink-0 items-center justify-center rounded-[12px] bg-paper text-ink" style={SURFACE_SHADOW_STYLE}>
+                <span className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[14px] border border-border/10 bg-paper text-ink" style={SURFACE_SHADOW_STYLE}>
                   <ControlFeatureIcon index={index} />
                 </span>
                 <p

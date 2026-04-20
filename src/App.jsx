@@ -16,7 +16,7 @@ import { Footer } from './components/sections/Footer';
 function App() {
   return (
     <div className="min-h-screen bg-surface text-ink">
-      <Header navItems={landingContent.navItems} cta={landingContent.hero.primaryCta} />
+      <Header navItems={landingContent.navItems} />
 
       <main className="overflow-hidden">
         <HeroSection hero={landingContent.hero} />
@@ -27,14 +27,14 @@ function App() {
         <HowItWorksSection howItWorks={landingContent.howItWorks} />
         <ControlSection control={landingContent.control} />
 
+        <PricingSection pricing={landingContent.pricing} />
+
         <section className="bg-ink px-[32px] py-[128px]">
           <div className="mx-auto grid w-full max-w-[1216px] gap-[80px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
             <ObjectionSection objection={landingContent.objection} />
             <TrustSection trust={landingContent.trust} />
           </div>
         </section>
-
-        <PricingSection pricing={landingContent.pricing} />
 
         <FinalCtaSection finalCta={landingContent.finalCta} />
       </main>

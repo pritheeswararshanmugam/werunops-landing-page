@@ -2,7 +2,7 @@ import { Reveal } from '../ui/Reveal';
 
 export function FinalCtaSection({ finalCta }) {
   return (
-    <section id="contact" className="bg-surface px-[32px] py-[128px]">
+    <section id="contact" className="surface-texture bg-surface px-[32px] py-[128px]">
       <div className="mx-auto flex w-full max-w-[1280px] justify-center">
         <div className="grid w-full max-w-[1216px] overflow-hidden rounded-[16px] bg-paper shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] lg:min-h-[534px] lg:grid-cols-[608px_608px]">
           <Reveal className="bg-ink px-[24px] py-[48px] text-paper sm:px-[40px] sm:py-[64px] lg:px-[80px] lg:pb-[194px] lg:pt-[80px]">
