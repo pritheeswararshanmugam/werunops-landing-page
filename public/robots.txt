@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://werunops.com.au/sitemap.xml

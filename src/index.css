@@ -6,6 +6,7 @@
 
 :root {
   --header-height: 73px;
+  --anchor-offset: 92px;
   --color-ink: 9 20 38;
   --color-brand: 235 105 5;
   --color-paper: 255 255 255;
@@ -22,7 +23,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: var(--header-height);
+    scroll-padding-top: var(--anchor-offset);
   }
 
   body {
@@ -50,11 +51,17 @@
   }
 
   [id] {
-    scroll-margin-top: var(--header-height);
+    scroll-margin-top: var(--anchor-offset);
   }
 
   ::selection {
     background: rgb(var(--color-brand) / 0.22);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --anchor-offset: 88px;
   }
 }
 
@@ -105,11 +112,76 @@
     background-position: 0 0, 0 0, 100% 0, 0 0, 0 0;
   }
 
-  .button-primary {
-    @apply inline-flex items-center justify-center rounded-[0.25rem] bg-brand px-6 py-4 font-body text-sm font-black uppercase tracking-[0.22em] text-white shadow-orange transition duration-200 hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand;
+  .card-base {
+    @apply rounded-[16px] border p-6;
   }
 
-  .button-secondary {
-    @apply inline-flex items-center justify-center rounded-[0.25rem] border-2 border-ink px-6 py-4 font-body text-sm font-black uppercase tracking-[0.22em] text-ink transition duration-200 hover:-translate-y-0.5 hover:bg-ink hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ink;
+  .card-light {
+    @apply border-border/10 bg-paper shadow-[0px_18px_30px_-24px_rgba(9,20,38,0.32)];
+  }
+
+  .card-dark {
+    @apply border-paper/10 bg-card/[0.92] shadow-[0px_18px_30px_-24px_rgba(0,0,0,0.72)];
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-[56px] items-center justify-center rounded-[4px] bg-brand px-8 py-4 font-body text-[14px] font-black uppercase leading-6 tracking-[0.14em] text-paper shadow-orange transition duration-200 hover:-translate-y-0.5 hover:brightness-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:pointer-events-none disabled:opacity-60;
+  }
+
+  .btn-primary--sm {
+    @apply min-h-[48px] px-6 py-[13px] text-[12px] leading-[18px] tracking-[0.12em];
+  }
+
+  .btn-secondary {
+    @apply inline-flex min-h-[56px] items-center justify-center rounded-[4px] border border-border/20 bg-transparent px-8 py-4 font-body text-[14px] font-bold uppercase leading-6 tracking-[0.14em] transition duration-200 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:pointer-events-none disabled:opacity-60;
+  }
+
+  .form-input {
+    @apply h-[52px] w-full rounded-[10px] border border-border/45 bg-[rgb(var(--color-surface)/0.82)] px-[14px] py-[14px] text-[16px] leading-[19px] text-ink outline-none transition-colors duration-150 placeholder:text-[rgb(var(--color-muted)/0.52)] focus:border-brand focus:bg-paper focus-visible:outline-none;
+  }
+
+  .form-input--datetime {
+    color-scheme: light;
+    cursor: pointer;
+    min-height: 52px;
+  }
+
+  .form-input--datetime::-webkit-date-and-time-value {
+    min-height: 1.25rem;
+    text-align: left;
+  }
+
+  .form-input--datetime::-webkit-datetime-edit {
+    color: rgb(var(--color-ink));
+  }
+
+  .form-input--datetime::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+
+  .form-input--datetime::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    margin: 0;
+    opacity: 0.68;
+    transition: opacity 150ms ease;
+  }
+
+  .form-input--datetime:hover::-webkit-calendar-picker-indicator,
+  .form-input--datetime:focus::-webkit-calendar-picker-indicator,
+  .form-input--datetime:focus-within::-webkit-calendar-picker-indicator {
+    opacity: 1;
+  }
+
+  .form-input--datetime:not(:focus):invalid,
+  .form-input--datetime:not(:focus):invalid::-webkit-datetime-edit,
+  .form-input--datetime:not(:focus):invalid::-webkit-datetime-edit-fields-wrapper,
+  .form-input--datetime:not(:focus):invalid::-webkit-datetime-edit-text,
+  .form-input--datetime:not(:focus):invalid::-webkit-datetime-edit-month-field,
+  .form-input--datetime:not(:focus):invalid::-webkit-datetime-edit-day-field,
+  .form-input--datetime:not(:focus):invalid::-webkit-datetime-edit-year-field,
+  .form-input--datetime:not(:focus):invalid::-webkit-datetime-edit-hour-field,
+  .form-input--datetime:not(:focus):invalid::-webkit-datetime-edit-minute-field,
+  .form-input--datetime:not(:focus):invalid::-webkit-datetime-edit-ampm-field {
+    color: rgb(var(--color-muted) / 0.52);
   }
 }

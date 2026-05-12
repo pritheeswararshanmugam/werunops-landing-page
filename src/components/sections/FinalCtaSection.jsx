@@ -1,10 +1,23 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Reveal } from '../ui/Reveal';
 
 const NETLIFY_FORM_NAME = 'contact';
+const DATE_TIME_PICKER_KEYS = new Set(['Enter', ' ', 'ArrowDown']);
 
 function encodeFormBody(formData) {
   return new URLSearchParams(Array.from(formData.entries())).toString();
+}
+
+function tryShowDateTimePicker(input) {
+  if (input.type !== 'datetime-local' || typeof input.showPicker !== 'function') {
+    return;
+  }
+
+  try {
+    input.showPicker();
+  } catch {
+    // Browsers can reject repeated picker calls while it is already open.
+  }
 }
 
 function ReassuranceIcon() {
@@ -19,6 +32,22 @@ function ReassuranceIcon() {
 
 export function FinalCtaSection({ finalCta }) {
   const [submitState, setSubmitState] = useState('idle');
+  const [timezone, setTimezone] = useState('');
+  const messages = finalCta.messages ?? {};
+  const helperLines = finalCta.helperLines ?? [];
+  const auditChecklist = finalCta.auditChecklist ?? [];
+
+  useEffect(() => {
+    if (typeof Intl === 'undefined') {
+      return;
+    }
+
+    const detectedTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    if (detectedTimezone) {
+      setTimezone(detectedTimezone);
+    }
+  }, []);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -26,6 +55,7 @@ export function FinalCtaSection({ finalCta }) {
     const form = event.currentTarget;
     const formData = new FormData(form);
     formData.set('form-name', NETLIFY_FORM_NAME);
+    formData.set('timezone', timezone);
 
     setSubmitState('submitting');
 
@@ -49,33 +79,64 @@ export function FinalCtaSection({ finalCta }) {
     }
   }
 
+  function handleDateTimeInputClick(event) {
+    tryShowDateTimePicker(event.currentTarget);
+  }
+
+  function handleDateTimeInputKeyDown(event) {
+    if (!DATE_TIME_PICKER_KEYS.has(event.key)) {
+      return;
+    }
+
+    event.preventDefault();
+    tryShowDateTimePicker(event.currentTarget);
+  }
+
   return (
-    <section id="contact" className="surface-texture bg-surface px-[32px] py-[128px]">
+    <section id="contact" className="surface-texture bg-surface px-[32px] py-[96px] lg:py-[104px]">
       <div className="mx-auto flex w-full max-w-[1280px] justify-center">
-        <div className="grid w-full max-w-[1216px] overflow-hidden rounded-[16px] bg-paper shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] lg:min-h-[534px] lg:grid-cols-[608px_608px]">
-          <Reveal className="bg-ink px-[24px] py-[48px] text-paper sm:px-[40px] sm:py-[64px] lg:px-[80px] lg:pb-[194px] lg:pt-[80px]">
-            <div className="flex w-full max-w-[448px] flex-col gap-[24px]">
-              <h2 className="max-w-[448px] font-display text-[40px] font-extrabold leading-[40px] tracking-[-1px] text-paper lg:min-h-[144px] lg:text-display-hero">
+        <div className="card-base card-light grid w-full max-w-[1216px] overflow-hidden rounded-[16px] p-0 shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] lg:min-h-[500px] lg:grid-cols-[608px_608px]">
+          <Reveal className="bg-ink px-[24px] py-[36px] text-paper sm:px-[32px] sm:py-[44px] lg:px-[64px] lg:pb-[96px] lg:pt-[64px]">
+            <div className="flex w-full max-w-[448px] flex-col gap-[16px] lg:gap-[18px]">
+              <h2 className="max-w-[448px] font-display text-[40px] font-extrabold leading-[40px] tracking-[-1px] text-paper lg:min-h-[120px] lg:text-display-hero">
                 {finalCta.title}
               </h2>
-              <p className="max-w-[448px] pb-[16px] text-[18px] leading-[28px] text-faded">{finalCta.description}</p>
-              <div className="flex items-center gap-[16px]">
+              <p className="max-w-[448px] text-[18px] leading-[28px] text-faded">{finalCta.description}</p>
+              <div className="flex items-start gap-[12px] sm:items-center">
                 <ReassuranceIcon />
-                <span className="text-[14px] font-medium leading-[20px] text-paper lg:max-w-[215.08px]">{finalCta.reassurance}</span>
+                <span className="text-[14px] font-medium leading-[20px] text-paper lg:max-w-[240px]">{finalCta.reassurance}</span>
               </div>
+
+              {auditChecklist.length ? (
+                <div className="mt-[8px] flex w-full flex-col gap-[12px] border-t border-paper/10 pt-[18px]">
+                  <h3 className="font-display text-[14px] font-bold uppercase leading-[18px] tracking-[1.4px] text-brand">
+                    {finalCta.auditChecklistTitle}
+                  </h3>
+
+                  <div className="flex w-full flex-col gap-[10px]">
+                    {auditChecklist.map((item) => (
+                      <div key={item} className="flex w-full items-start gap-[12px] rounded-[12px] border border-paper/10 bg-paper/[0.03] px-[14px] py-[12px]">
+                        <span className="mt-[7px] h-[6px] w-[6px] flex-none rounded-full bg-brand" aria-hidden="true" />
+                        <p className="font-body text-[14px] font-semibold leading-[20px] text-paper">{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
             </div>
           </Reveal>
 
-          <Reveal delay={0.08} className="bg-paper px-[24px] py-[48px] sm:px-[40px] sm:py-[64px] lg:px-[80px] lg:pb-[96px] lg:pt-[80px]">
+          <Reveal delay={0.08} className="bg-paper px-[24px] py-[36px] sm:px-[32px] sm:py-[44px] lg:px-[64px] lg:pb-[64px] lg:pt-[64px]">
             <form
               name={NETLIFY_FORM_NAME}
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
-              className="flex w-full max-w-[448px] flex-col gap-[24px]"
+              className="flex w-full max-w-[448px] flex-col gap-[16px] lg:gap-[18px]"
             >
               <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
+              <input type="hidden" name="timezone" value={timezone} />
               <p className="hidden">
                 <label>
                   Don’t fill this out if you’re human: <input name="bot-field" />
@@ -83,15 +144,23 @@ export function FinalCtaSection({ finalCta }) {
               </p>
 
               {finalCta.form.fields.map((field) => (
-                <label key={field.name} className="flex w-full flex-col gap-[8px]">
+                <label key={field.name} className="flex w-full flex-col gap-[4px]">
                   <span className="font-display text-[12px] font-bold uppercase leading-[16px] tracking-[1.2px] text-ink">{field.label}</span>
+                  {field.hint ? (
+                    <span className="font-body text-[12px] font-medium leading-[18px] text-muted">{field.hint}</span>
+                  ) : null}
                   <input
                     type={field.type}
                     name={field.name}
                     placeholder={field.placeholder}
                     autoComplete={field.autoComplete}
-                    required
-                    className="h-[49px] w-full border-0 border-b-[2px] border-border bg-panel px-0 py-[14px] text-[16px] leading-[19px] text-ink outline-none placeholder:text-subtle focus:border-brand focus-visible:outline-none"
+                    required={field.required ?? true}
+                    onClick={field.type === 'datetime-local' ? handleDateTimeInputClick : undefined}
+                    onKeyDown={field.type === 'datetime-local' ? handleDateTimeInputKeyDown : undefined}
+                    className={[
+                      'form-input',
+                      field.type === 'datetime-local' ? 'form-input--datetime' : '',
+                    ].join(' ')}
                   />
                 </label>
               ))}
@@ -99,32 +168,34 @@ export function FinalCtaSection({ finalCta }) {
               <button
                 type="submit"
                 disabled={submitState === 'submitting'}
-                className="inline-flex h-[64px] w-full items-center justify-center rounded-[4px] bg-brand px-0 py-[20px] font-display text-[16px] font-black uppercase leading-[24px] tracking-[3.2px] text-paper shadow-[0px_20px_25px_-5px_rgba(249,115,22,0.2),0px_8px_10px_-6px_rgba(249,115,22,0.2)]"
+                className="btn-primary w-full"
               >
-                {submitState === 'submitting' ? 'Submitting...' : finalCta.form.buttonLabel}
+                {submitState === 'submitting' ? (messages.submitting ?? 'Submitting...') : finalCta.form.buttonLabel}
               </button>
 
               <div aria-live="polite" className="min-h-[24px]">
                 {submitState === 'success' ? (
                   <p className="font-body text-[14px] font-semibold leading-[20px] text-[#0F766E]">
-                    Thanks. Your request has been sent and we will be in touch shortly.
+                    {messages.success ?? 'Thanks. Your request has been sent and we will be in touch shortly.'}
                   </p>
                 ) : null}
 
                 {submitState === 'error' ? (
                   <p className="font-body text-[14px] font-semibold leading-[20px] text-brand">
-                    Submission failed. Please try again or email ops@werunops.au.
+                    {messages.error ?? 'Submission failed. Please try again or email ops@werunops.au.'}
                   </p>
                 ) : null}
               </div>
 
-              <div className="flex flex-col gap-[8px] border-t-[1px] border-border pt-[16px]">
-                <p className="font-body text-[14px] font-medium leading-[20px] text-muted">
-                  Zero obligation. 100% confidential review of your estimating, scheduling, and backend workflows for Australian construction and roofing teams.
-                </p>
-                <p className="font-body text-[14px] font-medium leading-[20px] text-muted">
-                  If there is a fit, you will get a practical next-step breakdown before any engagement is discussed.
-                </p>
+              <div className="flex flex-col gap-[8px] border-t-[1px] border-border pt-[12px]">
+                {helperLines.map((line) => (
+                  <div key={line} className="flex items-start gap-[10px]">
+                    <span className="mt-[7px] h-[5px] w-[5px] flex-none rounded-[999px] bg-brand" />
+                    <p className="font-body text-[13px] font-medium leading-[19px] text-muted sm:text-[14px] sm:leading-[20px]">
+                      {line}
+                    </p>
+                  </div>
+                ))}
               </div>
             </form>
           </Reveal>

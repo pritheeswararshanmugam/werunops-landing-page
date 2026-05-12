@@ -23,7 +23,7 @@ function FlowIcon({ step }) {
     );
   }
 
-  if (step === 'Quotation') {
+  if (step === 'Quotation' || step === 'Quote Sent') {
     return (
       <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
         <path d="M8 4.75h6.75L18 8v11.25H8z" />
@@ -35,7 +35,7 @@ function FlowIcon({ step }) {
     );
   }
 
-  if (step === 'Onboarding') {
+  if (step === 'Onboarding' || step === 'Job Booked') {
     return (
       <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="10.5" cy="9" r="2.75" />
@@ -109,11 +109,11 @@ function FlowIcon({ step }) {
 
 export function FlowSection({ flow }) {
   return (
-    <section id="system" className="surface-texture bg-surface py-[88px] lg:py-[96px] xl:py-[116px]">
+    <section id="system" className="surface-texture bg-surface py-[84px] lg:py-[92px] xl:py-[112px]">
       <div className="container-shell">
         <div className="mx-auto flex w-full max-w-[1216px] flex-col items-center">
           <Reveal className="w-full">
-            <div className="mx-auto flex max-w-[920px] flex-col items-center gap-[16px] text-center xl:max-w-[1040px]">
+            <div className="mx-auto flex max-w-[920px] flex-col items-center gap-[14px] text-center xl:max-w-[1040px] lg:gap-[16px]">
               <h2 className="font-display text-[34px] font-extrabold leading-[38px] tracking-[-0.9px] text-ink lg:text-[40px] lg:leading-[44px] xl:text-[52px] xl:leading-[56px] xl:tracking-[-0.05em]">
                 {flow.title}
               </h2>
@@ -124,37 +124,35 @@ export function FlowSection({ flow }) {
           </Reveal>
 
           <Reveal className="w-full" delay={0.04}>
-            <div className="mt-[40px] w-full lg:mt-[52px] xl:mt-[60px]">
-              <div className="relative grid gap-x-[12px] gap-y-[28px] sm:grid-cols-2 lg:grid-cols-[repeat(7,minmax(0,1fr))] lg:gap-x-[12px] lg:gap-y-0 xl:block xl:h-[104px]">
-                <div className="absolute left-[calc(7.143%+8px)] right-[calc(7.143%+8px)] top-[28px] hidden h-px bg-border/60 lg:block xl:left-[80px] xl:right-[80px] xl:top-[28px]" />
+            <div className="mt-[32px] w-full lg:mt-[44px] xl:mt-[52px]">
+              <div className="relative grid grid-cols-2 gap-x-[14px] gap-y-[20px] lg:grid-cols-[repeat(7,minmax(0,1fr))] lg:gap-x-[14px] lg:gap-y-0 xl:block xl:h-[104px]">
+                <div className="absolute left-[calc(7.143%+8px)] right-[calc(7.143%+8px)] top-[28px] hidden h-px bg-ink/16 lg:block xl:left-[80px] xl:right-[80px] xl:top-[28px]" />
 
                 {flow.steps.map((step, index) => {
                   const isLast = index === flow.steps.length - 1;
                   const layout = FLOW_STEP_LAYOUTS[index] ?? { desktopClassName: '' };
 
                   return (
-                    <Reveal key={step} className={['w-full xl:w-[128px]', layout.desktopClassName].join(' ')} delay={index * 0.1} duration={0.4} y={15}>
-                      <div className="flex w-full flex-col items-center gap-[14px] text-center">
+                    <Reveal
+                      key={step}
+                      className={['w-full max-w-[160px] justify-self-center xl:w-[128px] xl:max-w-none', isLast ? 'col-span-2 lg:col-span-1' : '', layout.desktopClassName].join(' ')}
+                      delay={index * 0.1}
+                      duration={0.4}
+                      y={15}
+                    >
+                      <div className="flex w-full flex-col items-center gap-[12px] text-center lg:gap-[13px]">
                         <div
                           className={[
                             'relative z-[1] grid h-[64px] w-[64px] place-items-center rounded-[999px] border',
                             isLast
                               ? 'border-brand bg-brand text-paper shadow-orange'
-                              : 'border-ink/10 text-ink shadow-[0px_18px_30px_-20px_rgba(9,20,38,0.45)]',
+                              : 'border-[rgb(var(--color-ink)/0.12)] bg-[rgb(var(--color-paper)/0.96)] text-ink shadow-[0px_16px_26px_-18px_rgba(9,20,38,0.38)]',
                           ].join(' ')}
-                          style={
-                            isLast
-                              ? undefined
-                              : {
-                                  background:
-                                    'linear-gradient(145deg, rgb(var(--color-paper) / 0.94), rgb(var(--color-ink) / 0.12))',
-                                }
-                          }
                         >
                           <FlowIcon step={step} />
                         </div>
 
-                        <h3 className={['font-body text-[12px] font-black uppercase leading-[16px] tracking-[1px] xl:text-[13px]', isLast ? 'text-ink' : 'text-ink'].join(' ')}>
+                        <h3 className={['min-h-[18px] font-body text-[13px] font-black uppercase leading-[18px] tracking-[0.08em] text-ink lg:text-[13px] xl:text-[14px]', isLast ? 'text-ink' : 'text-ink'].join(' ')}>
                           {step}
                         </h3>
                       </div>
@@ -163,7 +161,7 @@ export function FlowSection({ flow }) {
                 })}
               </div>
 
-              <p className="mt-[28px] text-center font-display text-[20px] font-extrabold leading-[28px] tracking-[-0.04em] text-ink lg:mt-[36px] xl:mt-[40px] xl:text-[24px] xl:leading-[32px]">
+              <p className="mt-[24px] text-center font-display text-[20px] font-extrabold leading-[28px] tracking-[-0.04em] text-ink lg:mt-[30px] xl:mt-[36px] xl:text-[24px] xl:leading-[32px]">
                 {flow.footer}
               </p>
             </div>

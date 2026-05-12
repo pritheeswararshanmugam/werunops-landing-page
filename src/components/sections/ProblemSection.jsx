@@ -75,8 +75,8 @@ function ProblemIcon({ type, className }) {
 
 export function ProblemSection({ problem }) {
   return (
-    <section id="problem" className="surface-texture bg-surface py-[128px]">
-      <div className="container-shell flex flex-col items-start gap-[48px]">
+    <section id="problem" className="surface-texture bg-surface py-[120px] lg:py-[124px]">
+      <div className="container-shell flex flex-col items-start gap-[40px] lg:gap-[44px]">
         <Reveal className="w-full max-w-[1216px]">
           <div className="w-full max-w-[1216px] pb-[32px]">
             <h2 className="w-full font-display text-[42px] font-extrabold leading-[42px] tracking-[-1px] text-ink sm:text-[48px] sm:leading-[48px] sm:tracking-[-1.2px]">
@@ -85,20 +85,20 @@ export function ProblemSection({ problem }) {
           </div>
         </Reveal>
 
-        <div className="grid w-full max-w-[1216px] gap-[20px] md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid w-full max-w-[1216px] items-stretch gap-[16px] md:grid-cols-2 md:gap-[18px] xl:grid-cols-4">
           {problem.cards.map((card, index) => {
             const layout = PROBLEM_CARD_LAYOUTS[index];
 
             return (
-              <Reveal key={card.title} delay={index * 0.1} duration={0.4} y={15} className="w-full">
+              <Reveal key={card.title} delay={index * 0.1} duration={0.4} y={15} className="w-full h-full">
                 <article
                   className={[
-                    'box-border flex min-h-[220px] w-full flex-col items-start gap-[18px] rounded-[20px] border p-[32px] ring-1 ring-paper/80 shadow-[0px_18px_30px_-24px_rgba(9,20,38,0.35)]',
+                    'card-base card-light box-border flex h-full min-h-[220px] w-full flex-col items-start gap-[16px] p-[28px] xl:p-[30px] ring-1 ring-paper/80',
                     layout.backgroundClass,
                     layout.borderClass,
                   ].join(' ')}
                 >
-                  <span className="inline-flex h-[64px] w-[64px] items-center justify-center rounded-[18px] border border-brand/15 bg-brand/[0.08] text-brand">
+                  <span className="inline-flex h-[60px] w-[60px] items-center justify-center rounded-[16px] border border-brand/15 bg-brand/[0.08] text-brand">
                     <ProblemIcon type={card.icon} className="h-[38px] w-[38px]" />
                   </span>
 

@@ -1,6 +1,5 @@
 import { Reveal } from '../ui/Reveal';
 import { SectionHeading } from '../ui/SectionHeading';
-import { MediaPlaceholder } from '../ui/MediaPlaceholder';
 
 function SolutionTick() {
   return (
@@ -20,10 +19,13 @@ export function SolutionSection({ solution }) {
         <div className="grid items-start gap-[64px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-[40px] min-[1280px]:grid-cols-[568px_568px] min-[1280px]:gap-[80px]">
           <Reveal className="w-full max-w-[568px] lg:max-w-none min-[1280px]:translate-y-[3.25px]">
             <div className="w-full max-w-[568px] lg:max-w-none">
-              <MediaPlaceholder
-                variant="photo"
-                className="paper-texture h-[420px] w-full max-w-[512px] lg:h-[440px] lg:max-w-none min-[1280px]:h-[512px] min-[1280px]:max-w-[512px]"
-              />
+              <div className="paper-texture relative flex h-[420px] w-full max-w-[512px] flex-col overflow-hidden rounded-[4px] border-[1px] border-border/10 bg-panel text-ink shadow-[0px_1px_2px_rgba(0,0,0,0.05)] lg:h-[440px] lg:max-w-none min-[1280px]:h-[512px] min-[1280px]:max-w-[512px]">
+                <img
+                  src="/images/Solution Section.png"
+                  alt="Admin support workflow showing quoting, estimates, scheduling coordination, invoicing, and follow-up"
+                  className="h-full w-full object-cover"
+                />
+              </div>
             </div>
           </Reveal>
 

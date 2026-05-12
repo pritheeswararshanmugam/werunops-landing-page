@@ -15,9 +15,11 @@ function scrollToTarget(hash) {
 
   const header = document.querySelector('[data-site-header="true"]');
   const headerHeight = header ? header.getBoundingClientRect().height : 72;
+  const cssOffset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--anchor-offset').trim(), 10);
+  const offset = Number.isNaN(cssOffset) ? headerHeight : cssOffset;
   window.history.replaceState(null, '', hash);
 
-  const top = target.getBoundingClientRect().top + window.scrollY - headerHeight;
+  const top = target.getBoundingClientRect().top + window.scrollY - offset;
   window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
 }
 
@@ -26,8 +28,7 @@ export function Header({ navItems, cta }) {
   const resolvedCta = cta ?? landingContent.hero.primaryCta;
   const navLinkClassName =
     'font-display text-[16px] font-[700] leading-[24px] tracking-[-0.4px] text-ink';
-  const ctaClassName =
-    'inline-flex h-[40px] items-center justify-center rounded-[4px] bg-brand px-[24px] py-[10px] font-body text-[14px] font-[700] leading-[20px] tracking-[1.4px] uppercase text-paper';
+  const ctaClassName = 'btn-primary btn-primary--sm';
 
   function handleNavClick(event, href, closeMenu = false) {
     if (!href?.startsWith('#')) {
@@ -46,11 +47,11 @@ export function Header({ navItems, cta }) {
 
     window.setTimeout(() => {
       scrollToTarget(href);
-    }, closeMenu ? 120 : 0);
+    }, closeMenu ? 280 : 0);
   }
 
   return (
-    <header data-site-header="true" className="sticky top-0 z-50 border-b border-border/10 bg-page shadow-[0px_14px_28px_-24px_rgba(9,20,38,0.45)]">
+    <header data-site-header="true" className="sticky top-0 z-50 border-b border-[rgb(var(--color-border)/0.22)] bg-[rgb(var(--color-paper)/0.84)] shadow-[0px_12px_32px_-24px_rgba(9,20,38,0.4)] backdrop-blur-md">
       <div className="mx-auto box-border flex h-[72px] w-full max-w-[1280px] items-center justify-between px-[32px] lg:grid lg:grid-cols-[104.98px_minmax(0,1fr)_219.22px] lg:gap-[48px]">
         <a
           href="#home"
@@ -73,10 +74,10 @@ export function Header({ navItems, cta }) {
           ))}
         </nav>
 
-        <div className="hidden lg:flex lg:justify-end">
+        <div className="hidden lg:flex lg:items-center lg:justify-end">
           <a
             href={resolvedCta.href}
-            className={[ctaClassName, 'w-[219.22px]'].join(' ')}
+            className={[ctaClassName, 'w-[219.22px] max-w-full self-center whitespace-nowrap'].join(' ')}
             onClick={(event) => handleNavClick(event, resolvedCta.href)}
           >
             {resolvedCta.label}
@@ -120,7 +121,7 @@ export function Header({ navItems, cta }) {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.24, ease: 'easeOut' }}
-            className="overflow-hidden border-t-[1px] border-border/20 bg-page lg:hidden"
+            className="overflow-hidden border-t-[1px] border-[rgb(var(--color-border)/0.18)] bg-[rgb(var(--color-paper)/0.92)] backdrop-blur-md lg:hidden"
           >
             <div className="mx-auto box-border flex w-full max-w-[1280px] flex-col gap-[16px] px-[32px] py-[20px]">
               {navItems.map((item) => (

@@ -34,17 +34,17 @@ function TrustIcon({ index }) {
 export function TrustSection({ trust }) {
   return (
     <Reveal delay={0.08} className="w-full max-w-[568px]">
-      <div className="flex w-full max-w-[568px] flex-col items-start gap-[32px] text-left">
+      <div className="flex w-full max-w-[568px] flex-col items-start gap-[20px] text-left lg:gap-[24px]">
         <h2 className="w-full max-w-[568px] font-display text-[30px] font-extrabold leading-[36px] text-paper">{trust.title}</h2>
 
-        <div className="flex w-full max-w-[568px] flex-col items-start gap-[24px]">
+        <div className="flex w-full max-w-[568px] flex-col items-start gap-[14px] lg:gap-[16px]">
           {trust.items.map((item, index) => (
-            <article key={item.title} className="flex min-h-[104px] w-full max-w-[568px] items-center gap-[20px] rounded-[20px] border border-paper/10 bg-card/[0.78] px-[20px] py-[18px] shadow-[0px_20px_32px_-28px_rgba(0,0,0,0.8)]">
-              <div className="flex h-[64px] w-[64px] flex-none items-center justify-center rounded-[16px] border border-paper/10 bg-paper/[0.04] text-brand">
+            <article key={item.title} className="card-base card-dark flex min-h-[96px] w-full max-w-[568px] items-center gap-[16px] px-[18px] py-[16px] lg:min-h-[100px] lg:px-[20px] lg:py-[18px]">
+              <span className="inline-flex h-[52px] w-[52px] flex-none items-center justify-center rounded-[14px] bg-brand/[0.14] text-brand">
                 <TrustIcon index={index} />
-              </div>
+              </span>
 
-              <div className="flex max-w-[360px] flex-col items-start gap-[4px]">
+              <div className="flex max-w-[420px] flex-col items-start gap-[4px]">
                 <h3 className="w-full font-body text-[16px] font-bold leading-[24px] text-paper">{item.title}</h3>
                 <p className="w-full font-body text-[14px] font-normal leading-[20px] text-faded">{item.description}</p>
               </div>

@@ -29,8 +29,8 @@ function App() {
 
         <PricingSection pricing={landingContent.pricing} />
 
-        <section className="bg-ink px-[32px] py-[128px]">
-          <div className="mx-auto grid w-full max-w-[1216px] gap-[80px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start">
+        <section className="bg-ink px-[32px] py-[104px] lg:py-[112px]">
+          <div className="mx-auto grid w-full max-w-[1216px] gap-[40px] md:gap-[48px] lg:grid-cols-[minmax(0,520px)_minmax(0,568px)] lg:items-start lg:justify-between lg:gap-[56px]">
             <ObjectionSection objection={landingContent.objection} />
             <TrustSection trust={landingContent.trust} />
           </div>

@@ -45,34 +45,40 @@ function FooterLinkColumn({ title, items, widthClassName }) {
 
 export function Footer({ footer }) {
   return (
-    <footer className="bg-[#0F172A] px-[48px] py-[80px]">
+    <footer className="bg-[#0F172A] px-[32px] py-[64px] lg:py-[72px]">
       <div className="mx-auto w-full max-w-[1184px]">
-        <Reveal className="flex w-full flex-col items-start gap-[48px] lg:flex-row lg:justify-between lg:gap-[0px]">
-          <div className="flex w-full max-w-[281.64px] flex-col items-start gap-[15px]">
+        <Reveal className="flex w-full flex-col items-start gap-[40px] lg:flex-row lg:items-start lg:justify-start lg:gap-[96px] xl:gap-[128px]">
+          <div className="flex w-full max-w-[296px] flex-col items-start gap-[14px]">
             <a href="#home" className="font-body text-[24px] font-black leading-[32px] text-[#F8FAFC]">
               WeRunOps.
             </a>
 
-            <p className="w-full max-w-[271.52px] pb-[0.75px] font-body text-[14px] font-medium leading-[23px] text-[#CBD5E1]">
+            <p className="w-full max-w-[292px] font-body text-[14px] font-medium leading-[23px] text-[#CBD5E1]">
               {footer.blurb}
             </p>
           </div>
 
-          <div className="flex w-full max-w-[564.89px] flex-col items-start gap-[32px] sm:flex-row sm:items-start sm:justify-between sm:gap-[40px] lg:gap-[0px]">
-            <FooterLinkColumn title="Content" items={footer.contentLinks} widthClassName="w-full max-w-[70.72px]" />
+          <div className="flex w-full max-w-[620px] flex-col items-start gap-[28px] sm:flex-row sm:items-start sm:justify-start sm:gap-[40px] lg:gap-[56px]">
+            <FooterLinkColumn title="Content" items={footer.contentLinks} widthClassName="w-full max-w-[156px]" />
             <FooterLinkColumn title="Legal" items={footer.legalLinks} widthClassName="w-full max-w-[44.22px]" />
 
-            <div className="flex w-full max-w-[160px] flex-col items-start gap-[24px]">
+            <div className="flex w-full max-w-[220px] flex-col items-start gap-[20px]">
               <p className="font-body text-[12px] font-bold uppercase leading-[16px] tracking-[1.2px] text-[#F8FAFC]">
                 Contact
               </p>
 
-              <ul className="flex w-full flex-col items-start gap-[16px]">
-                {footer.contact.map((item, index) => (
-                  <li key={item.label} className="w-full font-body text-[14px] leading-[20px]">
-                    <span className={index === 0 ? 'font-semibold text-[#F97316]' : 'font-normal text-[#94A3B8]'}>
-                      {item.value}
-                    </span>
+              <ul className="flex w-full flex-col items-start gap-[12px]">
+                {footer.contact.map((item) => (
+                  <li key={item.label} className="w-full break-words font-body text-[14px] leading-[21px]">
+                    {'href' in item ? (
+                      <a href={item.href} className="font-normal text-[#94A3B8] transition-colors duration-150 hover:text-[#CBD5E1]">
+                        {item.value}
+                      </a>
+                    ) : (
+                      <span className="font-normal text-[#94A3B8]">
+                        {item.value}
+                      </span>
+                    )}
                   </li>
                 ))}
               </ul>

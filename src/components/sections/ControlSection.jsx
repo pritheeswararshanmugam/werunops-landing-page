@@ -55,84 +55,12 @@ function ControlFeatureIcon({ index }) {
 
 function ControlPanelArtwork() {
   return (
-    <div className="relative h-[552px] w-[552px] overflow-hidden rounded-[12px] bg-ink opacity-[0.9]">
-      <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-card to-ink" />
-      <div aria-hidden="true" className="absolute left-[0px] top-[0px] h-[188px] w-[188px] rounded-full bg-brand/[0.149] blur-[48px]" />
-      <div aria-hidden="true" className="absolute right-[0px] top-[0px] h-[168px] w-[168px] rounded-full bg-paper/[0.078] blur-[40px]" />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 text-paper/[0.031] opacity-[0.45]"
-        style={{
-          backgroundImage: 'linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)',
-          backgroundSize: '46px 46px',
-        }}
+    <div className="relative h-[552px] w-[552px] overflow-hidden rounded-[12px] bg-ink">
+      <img
+        src="/images/Control section.png"
+        alt="Owner view of quotes pending, jobs booked, invoices sent or overdue, and follow-ups"
+        className="h-full w-full object-cover"
       />
-
-      <div aria-hidden="true" className="absolute left-[32px] top-[32px] flex gap-[10px]">
-        <span className="h-[10px] w-[10px] rounded-[999px] bg-paper/[0.122]" />
-        <span className="h-[10px] w-[10px] rounded-[999px] bg-paper/[0.122]" />
-        <span className="h-[10px] w-[10px] rounded-[999px] bg-brand" />
-      </div>
-
-      <div aria-hidden="true" className="absolute left-[32px] top-[64px] h-[10px] w-[118px] rounded-[999px] bg-paper/[0.078]" />
-      <div aria-hidden="true" className="absolute left-[32px] top-[86px] h-[10px] w-[176px] rounded-[999px] bg-paper/[0.059]" />
-
-      <div aria-hidden="true" className="absolute left-[32px] top-[126px] h-[196px] w-[256px] rounded-[24px] border-[1px] border-paper/[0.078] bg-paper/[0.031]">
-        <div className="absolute left-[24px] top-[24px] h-[10px] w-[92px] rounded-[999px] bg-paper/[0.078]" />
-        <div className="absolute left-[24px] top-[48px] h-[10px] w-[154px] rounded-[999px] bg-paper/[0.059]" />
-        <div className="absolute left-[24px] top-[88px] h-[84px] w-[208px] rounded-[18px] bg-paper/[0.059]" />
-        <div className="absolute left-[42px] top-[110px] h-[8px] w-[102px] rounded-[999px] bg-brand" />
-        <div className="absolute left-[42px] top-[130px] h-[8px] w-[138px] rounded-[999px] bg-paper/[0.078]" />
-        <div className="absolute bottom-[22px] left-[24px] flex gap-[10px]">
-          <span className="h-[52px] w-[18px] rounded-[999px] bg-paper/[0.078]" />
-          <span className="h-[76px] w-[18px] rounded-[999px] bg-brand" />
-          <span className="h-[64px] w-[18px] rounded-[999px] bg-paper/[0.102]" />
-          <span className="h-[90px] w-[18px] rounded-[999px] bg-paper/[0.078]" />
-          <span className="h-[72px] w-[18px] rounded-[999px] bg-paper/[0.102]" />
-        </div>
-      </div>
-
-      <div aria-hidden="true" className="absolute right-[32px] top-[126px] h-[144px] w-[216px] rounded-[24px] border-[1px] border-paper/[0.078] bg-paper/[0.031]">
-        <div className="absolute left-[24px] top-[24px] h-[10px] w-[82px] rounded-[999px] bg-paper/[0.078]" />
-        <div className="absolute left-[24px] top-[52px] h-[10px] w-[110px] rounded-[999px] bg-paper/[0.059]" />
-        <div className="absolute left-[24px] right-[24px] top-[86px] flex items-end justify-between">
-          <span className="h-[26px] w-[22px] rounded-t-[12px] bg-paper/[0.078]" />
-          <span className="h-[44px] w-[22px] rounded-t-[12px] bg-paper/[0.102]" />
-          <span className="h-[64px] w-[22px] rounded-t-[12px] bg-brand" />
-          <span className="h-[52px] w-[22px] rounded-t-[12px] bg-paper/[0.078]" />
-        </div>
-      </div>
-
-      <div aria-hidden="true" className="absolute bottom-[32px] left-[32px] h-[164px] w-[302px] rounded-[24px] border-[1px] border-paper/[0.078] bg-paper/[0.031]">
-        <div className="absolute left-[24px] top-[24px] h-[10px] w-[96px] rounded-[999px] bg-paper/[0.078]" />
-        <div className="absolute left-[24px] top-[52px] h-[10px] w-[128px] rounded-[999px] bg-paper/[0.059]" />
-        <div className="absolute left-[24px] top-[92px] h-[12px] w-[254px] rounded-[999px] bg-paper/[0.071]" />
-        <div className="absolute left-[24px] top-[118px] h-[12px] w-[212px] rounded-[999px] bg-brand" />
-        <div className="absolute left-[24px] top-[144px] h-[12px] w-[174px] rounded-[999px] bg-paper/[0.071]" />
-      </div>
-
-      <div aria-hidden="true" className="absolute bottom-[32px] right-[32px] h-[204px] w-[216px] rounded-[24px] border-[1px] border-paper/[0.078] bg-paper/[0.031]">
-        <div className="absolute left-[24px] top-[24px] h-[10px] w-[76px] rounded-[999px] bg-paper/[0.078]" />
-        <div className="absolute left-[24px] top-[52px] h-[10px] w-[118px] rounded-[999px] bg-paper/[0.059]" />
-        <div className="absolute left-[24px] right-[24px] top-[92px] flex flex-col gap-[14px]">
-          <div className="flex items-center gap-[14px]">
-            <span className="h-[15px] w-[15px] rounded-[999px] bg-brand" />
-            <span className="h-[10px] w-[132px] rounded-[999px] bg-paper/[0.078]" />
-          </div>
-          <div className="flex items-center gap-[14px]">
-            <span className="h-[15px] w-[15px] rounded-[999px] bg-paper/[0.102]" />
-            <span className="h-[10px] w-[112px] rounded-[999px] bg-paper/[0.071]" />
-          </div>
-          <div className="flex items-center gap-[14px]">
-            <span className="h-[15px] w-[15px] rounded-[999px] bg-paper/[0.102]" />
-            <span className="h-[10px] w-[148px] rounded-[999px] bg-paper/[0.071]" />
-          </div>
-          <div className="flex items-center gap-[14px]">
-            <span className="h-[15px] w-[15px] rounded-[999px] bg-brand" />
-            <span className="h-[10px] w-[94px] rounded-[999px] bg-paper/[0.078]" />
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

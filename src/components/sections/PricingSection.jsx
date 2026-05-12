@@ -10,38 +10,39 @@ function TierCheck({ className = '' }) {
 }
 
 export function PricingSection({ pricing }) {
-  const trustSignals = ['Australian-based support', 'Secure process handovers', 'Weekly visibility across every tier'];
+  const trustSignals = pricing.trustSignals ?? [];
+  const footnote = pricing.footnote?.trim();
 
   return (
-    <section id="pricing" className="paper-texture bg-paper py-[80px] lg:py-[72px] xl:py-[92px]">
+    <section id="pricing" className="paper-texture bg-paper py-[72px] lg:py-[68px] xl:py-[84px]">
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-[32px]">
         <Reveal className="w-full">
           <SectionHeading
             align="center"
             title={pricing.title}
             description={pricing.description}
-            className="gap-[12px] xl:gap-[6px] [&_h2]:max-w-[640px] [&_h2]:text-[34px] [&_h2]:leading-[38px] lg:[&_h2]:text-[34px] lg:[&_h2]:leading-[38px] [&_p]:max-w-[470px] [&_p]:text-[16px] [&_p]:leading-[24px] xl:[&_p]:text-[17px] xl:[&_p]:leading-[26px]"
+            className="gap-[12px] [&_h2]:max-w-[640px] [&_h2]:text-[34px] [&_h2]:leading-[38px] lg:[&_h2]:text-[34px] lg:[&_h2]:leading-[38px] [&_p]:max-w-[520px] [&_p]:text-[16px] [&_p]:leading-[24px] xl:[&_p]:text-[17px] xl:[&_p]:leading-[26px]"
           />
         </Reveal>
 
-        <div className="mt-[30px] grid w-full gap-[18px] lg:mt-[24px] lg:grid-cols-[repeat(3,minmax(0,1fr))] lg:items-stretch xl:mt-[32px] xl:grid-cols-[384px_384px_384px] xl:justify-center xl:gap-x-[24px] xl:gap-y-0">
+        <div className="mt-[24px] grid w-full gap-[14px] lg:mt-[20px] lg:grid-cols-[repeat(3,minmax(0,1fr))] lg:items-stretch lg:gap-[16px] xl:mt-[28px] xl:grid-cols-[384px_384px_384px] xl:justify-center xl:gap-x-[20px] xl:gap-y-0">
           {pricing.tiers.map((tier, index) => {
             const featured = Boolean(tier.featured);
             const cardMinHeight = 'lg:min-h-[398px] xl:min-h-[428px]';
             const cardWidth = 'w-full';
-            const introPadding = featured ? 'pb-[12px] xl:pb-[16px]' : 'pb-[12px] xl:pb-[16px]';
-            const pricePadding = featured ? 'pb-[14px] xl:pb-[18px]' : 'pb-[14px] xl:pb-[18px]';
-            const listPadding = featured ? 'pb-[16px] xl:pb-[18px]' : 'pb-[16px] xl:pb-[18px]';
+            const introPadding = featured ? 'pb-[10px] xl:pb-[14px]' : 'pb-[10px] xl:pb-[14px]';
+            const pricePadding = featured ? 'pb-[12px] xl:pb-[16px]' : 'pb-[12px] xl:pb-[16px]';
+            const listPadding = featured ? 'pb-[12px] xl:pb-[16px]' : 'pb-[12px] xl:pb-[16px]';
 
             return (
               <Reveal key={tier.name} delay={index * 0.06} className="h-full w-full overflow-visible">
                 <article
                   className={[
-                    'relative flex h-full w-full flex-col overflow-visible rounded-[4px] p-[22px] xl:p-[24px]',
+                    'card-base relative flex h-full w-full flex-col overflow-visible p-[20px] xl:p-[22px]',
                     cardMinHeight,
                     featured
-                      ? 'border-[2px] border-brand bg-ink text-paper ring-1 ring-brand/10'
-                      : 'border border-border/10 bg-panel text-ink ring-1 ring-border/10',
+                      ? 'card-dark border-[2px] border-brand bg-ink text-paper ring-1 ring-brand/10'
+                      : 'card-light bg-panel text-ink ring-1 ring-border/10',
                   ].join(' ')}
                 >
                   {featured ? (
@@ -74,7 +75,7 @@ export function PricingSection({ pricing }) {
                     </div>
 
                     <div className={['flex flex-1 flex-col', listPadding].join(' ')}>
-                      <ul className="flex flex-col items-start gap-[10px] xl:gap-[12px]">
+                      <ul className="flex flex-col items-start gap-[8px] xl:gap-[10px]">
                         {tier.features.map((feature) => (
                           <li key={feature} className="flex w-full items-center gap-[12px]">
                             <TierCheck className={featured ? 'h-[9.47px] w-[12.84px]' : 'h-[9.02px] w-[12.23px]'} />
@@ -86,7 +87,7 @@ export function PricingSection({ pricing }) {
                         ))}
 
                         {tier.callout ? (
-                          <li className="flex w-full items-start gap-[12px] pt-[4px] xl:pt-[8px]">
+                          <li className="flex w-full items-start gap-[12px] pt-[2px] xl:pt-[6px]">
                             <TierCheck className={featured ? 'h-[11.02px] w-[11.02px]' : 'h-[10.5px] w-[10.5px]'} />
 
                             <span className={['font-body text-[13px] font-bold leading-[18px] xl:text-[14px] xl:leading-[20px]', featured ? 'text-paper' : 'text-ink'].join(' ')}>
@@ -97,17 +98,6 @@ export function PricingSection({ pricing }) {
                       </ul>
                     </div>
 
-                    <a
-                      href="#contact"
-                      className={[
-                        'inline-flex w-full items-center justify-center rounded-[4px] px-0 font-body text-[11px] font-black uppercase leading-[16px] tracking-[1.1px] xl:text-[12px] xl:tracking-[1.2px]',
-                        featured
-                          ? 'h-[44px] bg-brand text-paper ring-1 ring-brand/10 xl:h-[46px]'
-                          : 'h-[44px] border-[2px] border-ink bg-transparent text-ink xl:h-[48px]',
-                      ].join(' ')}
-                    >
-                      {tier.buttonLabel}
-                    </a>
                   </div>
                 </article>
               </Reveal>
@@ -115,9 +105,15 @@ export function PricingSection({ pricing }) {
           })}
         </div>
 
-        <Reveal delay={0.08} className="pt-[14px] lg:pt-[12px] xl:pt-[16px]">
-          <div className="mx-auto flex w-full max-w-[992px] flex-col items-center gap-[8px] rounded-[4px] border border-border/10 bg-surface px-[14px] py-[10px] xl:px-[18px] xl:py-[12px]">
-            <div className="flex flex-wrap items-center justify-center gap-x-[18px] gap-y-[8px]">
+        <Reveal delay={0.08} className="mx-auto flex w-full max-w-[992px] justify-center pt-[12px] lg:pt-[10px] xl:pt-[14px]">
+          <a href="#contact" className="btn-primary w-full max-w-[320px]">
+            {pricing.sectionCtaLabel}
+          </a>
+        </Reveal>
+
+        <Reveal delay={0.12} className="mx-auto w-full max-w-[992px] pt-[10px] lg:pt-[8px] xl:pt-[10px]">
+          <div className="mx-auto flex w-full max-w-[992px] flex-col items-center gap-[6px] rounded-[4px] border border-border/10 bg-surface px-[12px] py-[8px] xl:px-[16px] xl:py-[10px]">
+            <div className="flex flex-wrap items-center justify-center gap-x-[16px] gap-y-[6px]">
               {trustSignals.map((signal) => (
                 <span key={signal} className="inline-flex items-center gap-[8px] font-body text-[12px] font-[600] leading-[16px] text-muted">
                   <span className="h-[6px] w-[6px] rounded-[999px] bg-brand" />
@@ -126,9 +122,11 @@ export function PricingSection({ pricing }) {
               ))}
             </div>
 
-            <p className="text-center font-body text-[13px] font-[500] leading-[18px] text-muted">
-              {pricing.footnote}
-            </p>
+            {footnote ? (
+              <p className="text-center font-body text-[12px] font-[500] leading-[17px] text-muted xl:text-[13px] xl:leading-[18px]">
+                {footnote}
+              </p>
+            ) : null}
           </div>
         </Reveal>
       </div>
