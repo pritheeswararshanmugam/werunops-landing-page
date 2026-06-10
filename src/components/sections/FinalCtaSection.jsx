@@ -93,11 +93,14 @@ export function FinalCtaSection({ finalCta }) {
   }
 
   return (
-    <section id="contact" className="surface-texture bg-surface px-[32px] py-[96px] lg:py-[104px]">
+    <section id="contact" className="surface-texture border-t border-border/20 bg-surface px-[20px] py-[80px] sm:px-[24px] md:px-[32px] lg:py-[104px]">
       <div className="mx-auto flex w-full max-w-[1280px] justify-center">
-        <div className="card-base card-light grid w-full max-w-[1216px] overflow-hidden rounded-[16px] p-0 shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.25)] lg:min-h-[500px] lg:grid-cols-[608px_608px]">
+        <div className="panel-shell panel-shell--prominent grid w-full max-w-[1216px] overflow-hidden lg:min-h-[500px] lg:grid-cols-2">
           <Reveal className="bg-ink px-[24px] py-[36px] text-paper sm:px-[32px] sm:py-[44px] lg:px-[64px] lg:pb-[96px] lg:pt-[64px]">
-            <div className="flex w-full max-w-[448px] flex-col gap-[16px] lg:gap-[18px]">
+            <div className="mx-auto flex w-full max-w-[448px] flex-col gap-[16px] lg:mx-0 lg:gap-[18px]">
+              <p className="font-display text-[12px] font-bold uppercase leading-[16px] tracking-[2.4px] text-brand">
+                {finalCta.eyebrow}
+              </p>
               <h2 className="max-w-[448px] font-display text-[40px] font-extrabold leading-[40px] tracking-[-1px] text-paper lg:min-h-[120px] lg:text-display-hero">
                 {finalCta.title}
               </h2>
@@ -116,7 +119,11 @@ export function FinalCtaSection({ finalCta }) {
                   <div className="flex w-full flex-col gap-[10px]">
                     {auditChecklist.map((item) => (
                       <div key={item} className="flex w-full items-start gap-[12px] rounded-[12px] border border-paper/10 bg-paper/[0.03] px-[14px] py-[12px]">
-                        <span className="mt-[7px] h-[6px] w-[6px] flex-none rounded-full bg-brand" aria-hidden="true" />
+                        <span className="mt-[1px] flex h-[22px] w-[22px] flex-none items-center justify-center rounded-[8px] border border-brand/25 bg-brand/10 text-brand" aria-hidden="true">
+                          <svg viewBox="0 0 20 20" className="h-[11px] w-[11px]" fill="none">
+                            <path d="M4.8 10.4 8.15 13.75 15.25 6.65" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </span>
                         <p className="font-body text-[14px] font-semibold leading-[20px] text-paper">{item}</p>
                       </div>
                     ))}
@@ -133,7 +140,7 @@ export function FinalCtaSection({ finalCta }) {
               data-netlify="true"
               netlify-honeypot="bot-field"
               onSubmit={handleSubmit}
-              className="flex w-full max-w-[448px] flex-col gap-[16px] lg:gap-[18px]"
+              className="mx-auto flex w-full max-w-[448px] flex-col gap-[16px] lg:mx-0 lg:gap-[18px]"
             >
               <input type="hidden" name="form-name" value={NETLIFY_FORM_NAME} />
               <input type="hidden" name="timezone" value={timezone} />

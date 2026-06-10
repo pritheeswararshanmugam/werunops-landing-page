@@ -1,123 +1,97 @@
 import { Reveal } from '../ui/Reveal';
 
-const FLOW_STEP_LAYOUTS = [
-  { desktopClassName: 'xl:absolute xl:left-[16px] xl:top-0' },
-  { desktopClassName: 'xl:absolute xl:left-[192px] xl:top-0' },
-  { desktopClassName: 'xl:absolute xl:left-[368px] xl:top-0' },
-  { desktopClassName: 'xl:absolute xl:left-[544px] xl:top-0' },
-  { desktopClassName: 'xl:absolute xl:left-[720px] xl:top-0' },
-  { desktopClassName: 'xl:absolute xl:left-[896px] xl:top-0' },
-  { desktopClassName: 'xl:absolute xl:left-[1072px] xl:top-0' },
-];
-
 function FlowIcon({ step }) {
   const common = 'h-[26px] w-[26px]';
 
-  if (step === 'Enquiry') {
+  if (step === 'Lead') {
     return (
       <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
         <rect x="4.5" y="6.5" width="15" height="11" rx="1.75" />
         <path d="m6.5 8.5 5.5 4.25 5.5-4.25" />
-        <path d="M8.5 17.5h7" />
       </svg>
     );
   }
 
-  if (step === 'Quotation' || step === 'Quote Sent') {
+  if (step === 'Quote') {
     return (
       <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
         <path d="M8 4.75h6.75L18 8v11.25H8z" />
         <path d="M14.75 4.75V8H18" />
-        <path d="M10 11h6" />
-        <path d="M10 14.5h6" />
-        <path d="M10 18h4.5" />
+        <path d="M10 11h6M10 14.5h6M10 18h4.5" />
       </svg>
     );
   }
 
-  if (step === 'Onboarding' || step === 'Job Booked') {
-    return (
-      <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="10.5" cy="9" r="2.75" />
-        <path d="M5.75 18c.85-2.8 2.58-4.2 5.18-4.2 2.55 0 4.21 1.4 4.97 4.2" />
-        <path d="M18 8v6" />
-        <path d="M15 11h6" />
-      </svg>
-    );
-  }
-
-  if (step === 'Scheduling') {
+  if (step === 'Schedule') {
     return (
       <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
         <rect x="5" y="6.5" width="14" height="12.5" rx="1.6" />
-        <path d="M8 4.5v4" />
-        <path d="M16 4.5v4" />
-        <path d="M5 10h14" />
-        <path d="M8.5 12.75h.01" />
-        <path d="M12 12.75h.01" />
-        <path d="M15.5 12.75h.01" />
-        <path d="M8.5 16h.01" />
-        <path d="M12 16h.01" />
-        <path d="M15.5 16h.01" />
+        <path d="M8 4.5v4M16 4.5v4M5 10h14" />
+        <path d="m9 14 2 2 4-4" />
       </svg>
     );
   }
 
-  if (step === 'Invoicing') {
+  if (step === 'Complete') {
+    return (
+      <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="8" />
+        <path d="m8.5 12 2.3 2.3 4.7-5" />
+      </svg>
+    );
+  }
+
+  if (step === 'Invoice') {
     return (
       <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
         <path d="M8 4.75h6.5L18 8v11.25H8z" />
-        <path d="M14.5 4.75V8H18" />
-        <path d="M12 10.5v6.5" />
+        <path d="M14.5 4.75V8H18M12 10.5v6.5" />
         <path d="M14.35 11.75c-.3-.85-1.03-1.25-2.2-1.25-1.11 0-1.9.48-1.9 1.35 0 .94.82 1.26 2 1.55 1.24.31 2.35.63 2.35 1.86 0 1.05-.88 1.69-2.25 1.69-1.17 0-2.04-.43-2.42-1.32" />
       </svg>
     );
   }
 
-  if (step === 'Follow-ups') {
-    return (
-      <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="4.5" y="6.5" width="11.5" height="8.75" rx="1.5" />
-        <path d="m5.9 8.4 4.35 3.35 4.35-3.35" />
-        <path d="M18 8.25h2.25" />
-        <path d="M18 14h2.25" />
-        <path d="M17.75 11.1h3.25" />
-        <path d="m19.6 9.25 1.85 1.85-1.85 1.85" />
-      </svg>
-    );
-  }
+  return (
+    <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="4.25" y="6.25" width="15.5" height="11.5" rx="2" />
+      <path d="M4.75 10h14.5M8.5 14h2.75" />
+    </svg>
+  );
+}
 
-  if (step === 'Payment') {
-    return (
-      <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="4.25" y="6.25" width="15.5" height="11.5" rx="2" />
-        <path d="M4.75 10h14.5" />
-        <path d="M8.5 14h2.75" />
-        <path d="M14.15 13.2c-.22-.76-.84-1.12-1.89-1.12-.97 0-1.62.43-1.62 1.1 0 .74.65 1 1.74 1.25 1.09.25 2.05.54 2.05 1.58 0 .92-.76 1.47-1.94 1.47-.98 0-1.73-.37-2.02-1.08" />
-      </svg>
-    );
-  }
+function HelpIcon({ index }) {
+  const paths = [
+    <path key="enquiry" d="M5 7h14v10H5zM6.5 8.5 12 12.7l5.5-4.2" />,
+    <path key="quote" d="M7 4.5h7l3 3v12H7zM14 4.5v3h3M9.5 11h5M9.5 14.5h5" />,
+    <path key="crew" d="M5 7h14v12H5zM8 4.5v5M16 4.5v5M5 10.5h14M9 15l1.5 1.5L15 12" />,
+    <path key="materials" d="m4.5 8 7.5-4 7.5 4-7.5 4-7.5-4ZM4.5 12l7.5 4 7.5-4M4.5 16l7.5 4 7.5-4" />,
+    <path key="invoice" d="M7 4.5h7l3 3v12H7zM14 4.5v3h3M12 10v6M14 11.2c-.35-.8-1-1.2-2-1.2-1.1 0-1.8.45-1.8 1.25 0 .9.8 1.2 1.9 1.45 1.2.3 2.2.6 2.2 1.75 0 .95-.8 1.55-2.15 1.55-1.05 0-1.85-.4-2.2-1.2" />,
+    <path key="payment" d="M5 7h11v9H5zM6.5 8.5l5 3.8 4.5-3.4M17 10h2M17 14h2M18.5 12l1.5 1.5-1.5 1.5" />,
+  ];
 
   return (
-    <svg viewBox="0 0 24 24" className={common} fill="none" stroke="currentColor" strokeWidth="1.85" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="8.25" />
-      <path d="M12 7.5v9" />
-      <path d="M14.9 9.65c-.33-1.15-1.22-1.71-2.74-1.71-1.39 0-2.44.63-2.44 1.84 0 1.21 1.05 1.67 2.61 2.02 1.53.35 2.91.77 2.91 2.34 0 1.39-1.13 2.26-2.9 2.26-1.55 0-2.66-.61-3.08-1.89" />
-    </svg>
+    <span className="icon-tile icon-tile--compact">
+      <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[23px] w-[23px]" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        {paths[index] ?? paths[0]}
+      </svg>
+    </span>
   );
 }
 
 export function FlowSection({ flow }) {
   return (
-    <section id="system" className="surface-texture bg-surface py-[84px] lg:py-[92px] xl:py-[112px]">
+    <section id="system" className="surface-texture border-t border-border/20 bg-surface py-[88px] lg:py-[104px] xl:py-[112px]">
       <div className="container-shell">
         <div className="mx-auto flex w-full max-w-[1216px] flex-col items-center">
           <Reveal className="w-full">
-            <div className="mx-auto flex max-w-[920px] flex-col items-center gap-[14px] text-center xl:max-w-[1040px] lg:gap-[16px]">
+            <div className="mx-auto flex max-w-[1040px] flex-col items-center gap-[14px] text-center lg:gap-[16px]">
+              <p className="font-display text-[12px] font-bold uppercase leading-[16px] tracking-[2.4px] text-brandText">
+                {flow.eyebrow}
+              </p>
               <h2 className="font-display text-[34px] font-extrabold leading-[38px] tracking-[-0.9px] text-ink lg:text-[40px] lg:leading-[44px] xl:text-[52px] xl:leading-[56px] xl:tracking-[-0.05em]">
                 {flow.title}
               </h2>
-              <p className="max-w-[720px] text-[16px] font-medium leading-[24px] text-muted lg:text-[16px] lg:leading-[26px] xl:max-w-[780px] xl:text-[17px] xl:leading-[28px]">
+              <p className="max-w-[780px] text-[16px] font-medium leading-[24px] text-muted lg:leading-[26px] xl:text-[17px] xl:leading-[28px]">
                 {flow.description}
               </p>
             </div>
@@ -125,18 +99,17 @@ export function FlowSection({ flow }) {
 
           <Reveal className="w-full" delay={0.04}>
             <div className="mt-[32px] w-full lg:mt-[44px] xl:mt-[52px]">
-              <div className="relative grid grid-cols-2 gap-x-[14px] gap-y-[20px] lg:grid-cols-[repeat(7,minmax(0,1fr))] lg:gap-x-[14px] lg:gap-y-0 xl:block xl:h-[104px]">
-                <div className="absolute left-[calc(7.143%+8px)] right-[calc(7.143%+8px)] top-[28px] hidden h-px bg-ink/16 lg:block xl:left-[80px] xl:right-[80px] xl:top-[28px]" />
+              <div className="relative grid grid-cols-2 gap-x-[14px] gap-y-[20px] lg:grid-cols-6 lg:gap-y-0">
+                <div className="absolute left-[8.333%] right-[8.333%] top-[31px] hidden h-[2px] bg-border/55 lg:block" />
 
                 {flow.steps.map((step, index) => {
                   const isLast = index === flow.steps.length - 1;
-                  const layout = FLOW_STEP_LAYOUTS[index] ?? { desktopClassName: '' };
 
                   return (
                     <Reveal
                       key={step}
-                      className={['w-full max-w-[160px] justify-self-center xl:w-[128px] xl:max-w-none', isLast ? 'col-span-2 lg:col-span-1' : '', layout.desktopClassName].join(' ')}
-                      delay={index * 0.1}
+                      className={['w-full max-w-[160px] justify-self-center xl:w-[128px] xl:max-w-none', isLast ? 'col-span-2 lg:col-span-1' : ''].join(' ')}
+                      delay={index * 0.08}
                       duration={0.4}
                       y={15}
                     >
@@ -152,7 +125,7 @@ export function FlowSection({ flow }) {
                           <FlowIcon step={step} />
                         </div>
 
-                        <h3 className={['min-h-[18px] font-body text-[13px] font-black uppercase leading-[18px] tracking-[0.08em] text-ink lg:text-[13px] xl:text-[14px]', isLast ? 'text-ink' : 'text-ink'].join(' ')}>
+                        <h3 className="min-h-[18px] font-body text-[13px] font-black uppercase leading-[18px] tracking-[0.08em] text-ink xl:text-[14px]">
                           {step}
                         </h3>
                       </div>
@@ -161,9 +134,35 @@ export function FlowSection({ flow }) {
                 })}
               </div>
 
-              <p className="mt-[24px] text-center font-display text-[20px] font-extrabold leading-[28px] tracking-[-0.04em] text-ink lg:mt-[30px] xl:mt-[36px] xl:text-[24px] xl:leading-[32px]">
-                {flow.footer}
+              <p className="mt-[28px] text-center font-display text-[20px] font-extrabold leading-[28px] tracking-[-0.04em] text-ink lg:mt-[34px] xl:text-[24px] xl:leading-[32px]">
+                {flow.bridge}
               </p>
+            </div>
+          </Reveal>
+
+          <Reveal className="w-full" delay={0.08}>
+            <div className="mt-[48px] w-full border-t border-border/20 pt-[40px]">
+              <h3 className="text-center font-display text-[24px] font-extrabold leading-[32px] text-ink">
+                {flow.helpTitle}
+              </h3>
+
+              <ul className="mx-auto mt-[24px] grid w-full max-w-[1040px] gap-[14px] md:grid-cols-2 lg:grid-cols-3">
+                {flow.helpItems.map((item, index) => (
+                  <li key={item} className="card-base card-light card-compact flex min-h-[76px] items-center gap-[12px]">
+                    <HelpIcon index={index} />
+                    <span className="font-body text-[14px] font-semibold leading-[21px] text-ink">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mx-auto mt-[32px] max-w-[880px] text-center">
+                <p className="font-display text-[14px] font-bold uppercase leading-[20px] tracking-[1.4px] text-brandText">
+                  {flow.resultTitle}
+                </p>
+                <p className="mt-[10px] font-display text-[22px] font-extrabold leading-[31px] text-ink">
+                  {flow.footer}
+                </p>
+              </div>
             </div>
           </Reveal>
         </div>

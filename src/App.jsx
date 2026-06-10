@@ -8,33 +8,27 @@ import { ResultsSection } from './components/sections/ResultsSection';
 import { HowItWorksSection } from './components/sections/HowItWorksSection';
 import { ControlSection } from './components/sections/ControlSection';
 import { PricingSection } from './components/sections/PricingSection';
-import { ObjectionSection } from './components/sections/ObjectionSection';
-import { TrustSection } from './components/sections/TrustSection';
+import { FaqSection } from './components/sections/FaqSection';
 import { FinalCtaSection } from './components/sections/FinalCtaSection';
 import { Footer } from './components/sections/Footer';
 
 function App() {
   return (
     <div className="bg-surface text-ink">
-      <Header navItems={landingContent.navItems} />
+      <Header navItems={landingContent.navItems} brand={landingContent.footer.brand} />
 
       <main className="overflow-x-hidden">
         <HeroSection hero={landingContent.hero} />
         <ProblemSection problem={landingContent.problem} />
         <FlowSection flow={landingContent.flow} />
         <SolutionSection solution={landingContent.solution} />
-        <ResultsSection results={landingContent.results} />
+        <ResultsSection results={landingContent.results} cta={landingContent.hero.primaryCta} />
         <HowItWorksSection howItWorks={landingContent.howItWorks} />
         <ControlSection control={landingContent.control} />
 
         <PricingSection pricing={landingContent.pricing} />
 
-        <section className="bg-ink px-[32px] py-[104px] lg:py-[112px]">
-          <div className="mx-auto grid w-full max-w-[1216px] gap-[40px] md:gap-[48px] lg:grid-cols-[minmax(0,520px)_minmax(0,568px)] lg:items-start lg:justify-between lg:gap-[56px]">
-            <ObjectionSection objection={landingContent.objection} />
-            <TrustSection trust={landingContent.trust} />
-          </div>
-        </section>
+        <FaqSection objection={landingContent.objection} trust={landingContent.trust} />
 
         <FinalCtaSection finalCta={landingContent.finalCta} />
 

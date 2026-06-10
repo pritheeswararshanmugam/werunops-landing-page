@@ -23,12 +23,13 @@ function scrollToTarget(hash) {
   window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
 }
 
-export function Header({ navItems, cta }) {
+export function Header({ navItems, cta, brand = landingContent.footer.brand }) {
   const [isOpen, setIsOpen] = useState(false);
   const resolvedCta = cta ?? landingContent.hero.primaryCta;
   const navLinkClassName =
     'font-display text-[16px] font-[700] leading-[24px] tracking-[-0.4px] text-ink';
-  const ctaClassName = 'btn-primary btn-primary--sm';
+  const ctaClassName =
+    'btn-primary btn-primary--sm !px-[16px] !text-[11px] !leading-[15px] !tracking-[0.08em]';
 
   function handleNavClick(event, href, closeMenu = false) {
     if (!href?.startsWith('#')) {
@@ -52,16 +53,16 @@ export function Header({ navItems, cta }) {
 
   return (
     <header data-site-header="true" className="sticky top-0 z-50 border-b border-[rgb(var(--color-border)/0.22)] bg-[rgb(var(--color-paper)/0.84)] shadow-[0px_12px_32px_-24px_rgba(9,20,38,0.4)] backdrop-blur-md">
-      <div className="mx-auto box-border flex h-[72px] w-full max-w-[1280px] items-center justify-between px-[32px] lg:grid lg:grid-cols-[104.98px_minmax(0,1fr)_219.22px] lg:gap-[48px]">
+      <div className="mx-auto box-border flex h-[72px] w-full max-w-[1280px] items-center justify-between px-[20px] sm:px-[24px] md:px-[32px] xl:grid xl:grid-cols-[105px_minmax(0,1fr)_270px] xl:gap-[24px]">
         <a
           href="#home"
           className="w-[104.98px] font-body text-[20px] font-[900] leading-[28px] tracking-[-1px] text-ink"
           onClick={(event) => handleNavClick(event, '#home')}
         >
-          WeRunOps.
+          {brand}
         </a>
 
-        <nav className="hidden h-[24px] items-center justify-center gap-[32px] lg:flex">
+        <nav className="hidden h-[24px] items-center justify-center gap-[24px] xl:flex">
           {navItems.map((item) => (
             <a
               key={item.href}
@@ -74,10 +75,10 @@ export function Header({ navItems, cta }) {
           ))}
         </nav>
 
-        <div className="hidden lg:flex lg:items-center lg:justify-end">
+        <div className="hidden xl:flex xl:items-center xl:justify-end">
           <a
             href={resolvedCta.href}
-            className={[ctaClassName, 'w-[219.22px] max-w-full self-center whitespace-nowrap'].join(' ')}
+            className={[ctaClassName, 'w-[270px] max-w-full self-center whitespace-normal text-center'].join(' ')}
             onClick={(event) => handleNavClick(event, resolvedCta.href)}
           >
             {resolvedCta.label}
@@ -86,7 +87,7 @@ export function Header({ navItems, cta }) {
 
         <button
           type="button"
-          className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[4px] border-[1px] border-border/20 text-ink lg:hidden"
+          className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-[4px] border-[1px] border-border/20 text-ink xl:hidden"
           onClick={() => setIsOpen((current) => !current)}
           aria-expanded={isOpen}
           aria-label="Toggle navigation"
@@ -121,9 +122,9 @@ export function Header({ navItems, cta }) {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.24, ease: 'easeOut' }}
-            className="overflow-hidden border-t-[1px] border-[rgb(var(--color-border)/0.18)] bg-[rgb(var(--color-paper)/0.92)] backdrop-blur-md lg:hidden"
+            className="overflow-hidden border-t-[1px] border-[rgb(var(--color-border)/0.18)] bg-[rgb(var(--color-paper)/0.92)] backdrop-blur-md xl:hidden"
           >
-            <div className="mx-auto box-border flex w-full max-w-[1280px] flex-col gap-[16px] px-[32px] py-[20px]">
+            <div className="mx-auto box-border flex w-full max-w-[1280px] flex-col gap-[16px] px-[20px] py-[20px] sm:px-[24px] md:px-[32px]">
               {navItems.map((item) => (
                 <a
                   key={item.href}

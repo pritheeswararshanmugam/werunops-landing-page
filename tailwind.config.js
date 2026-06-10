@@ -17,6 +17,7 @@ export default {
         ink: '#091426',
         deep: '#091426',
         brand: '#EB6905',
+        brandText: '#C45500',
         muted: '#505F76',
         faded: '#8590A6',
         subtle: '#6B7280',

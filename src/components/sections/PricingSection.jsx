@@ -9,95 +9,89 @@ function TierCheck({ className = '' }) {
   );
 }
 
+function FeatureList({ items, featured = false }) {
+  return (
+    <ul className="flex flex-col items-start gap-[9px]">
+      {items.map((item) => (
+        <li key={item} className="flex w-full items-start gap-[12px]">
+          <TierCheck className="mt-[5px] h-[9px] w-[12px]" />
+          <span className={['font-body text-[13px] font-normal leading-[19px] xl:text-[14px] xl:leading-[20px]', featured ? 'text-faded' : 'text-muted'].join(' ')}>
+            {item}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 export function PricingSection({ pricing }) {
-  const trustSignals = pricing.trustSignals ?? [];
-  const footnote = pricing.footnote?.trim();
+  const replacementTier = pricing.tiers.find((tier) => tier.replacements);
 
   return (
-    <section id="pricing" className="paper-texture bg-paper py-[72px] lg:py-[68px] xl:py-[84px]">
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col px-[32px]">
+    <section id="pricing" className="paper-texture border-t border-border/20 bg-paper py-[80px] lg:py-[96px]">
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col px-[20px] sm:px-[24px] md:px-[32px]">
         <Reveal className="w-full">
-          <SectionHeading
-            align="center"
-            title={pricing.title}
-            description={pricing.description}
-            className="gap-[12px] [&_h2]:max-w-[640px] [&_h2]:text-[34px] [&_h2]:leading-[38px] lg:[&_h2]:text-[34px] lg:[&_h2]:leading-[38px] [&_p]:max-w-[520px] [&_p]:text-[16px] [&_p]:leading-[24px] xl:[&_p]:text-[17px] xl:[&_p]:leading-[26px]"
-          />
+          <div className="mx-auto flex max-w-[900px] flex-col items-center gap-[12px] text-center">
+            <p className="font-display text-[12px] font-bold uppercase leading-[16px] tracking-[2.4px] text-brandText">
+              {pricing.eyebrow}
+            </p>
+            <SectionHeading
+              align="center"
+              title={pricing.title}
+              description={pricing.description}
+              className="gap-[12px] [&_h2]:max-w-[760px] [&_h2]:text-[34px] [&_h2]:leading-[38px] lg:[&_h2]:text-[40px] lg:[&_h2]:leading-[44px] [&_p]:max-w-[760px] [&_p]:text-[16px] [&_p]:leading-[25px]"
+            />
+          </div>
         </Reveal>
 
-        <div className="mt-[24px] grid w-full gap-[14px] lg:mt-[20px] lg:grid-cols-[repeat(3,minmax(0,1fr))] lg:items-stretch lg:gap-[16px] xl:mt-[28px] xl:grid-cols-[384px_384px_384px] xl:justify-center xl:gap-x-[20px] xl:gap-y-0">
+        <div className="mt-[36px] grid w-full gap-[18px] lg:grid-cols-[repeat(3,minmax(0,1fr))] lg:items-stretch xl:grid-cols-[384px_384px_384px] xl:justify-center xl:gap-x-[20px]">
           {pricing.tiers.map((tier, index) => {
             const featured = Boolean(tier.featured);
-            const cardMinHeight = 'lg:min-h-[398px] xl:min-h-[428px]';
-            const cardWidth = 'w-full';
-            const introPadding = featured ? 'pb-[10px] xl:pb-[14px]' : 'pb-[10px] xl:pb-[14px]';
-            const pricePadding = featured ? 'pb-[12px] xl:pb-[16px]' : 'pb-[12px] xl:pb-[16px]';
-            const listPadding = featured ? 'pb-[12px] xl:pb-[16px]' : 'pb-[12px] xl:pb-[16px]';
 
             return (
               <Reveal key={tier.name} delay={index * 0.06} className="h-full w-full overflow-visible">
                 <article
                   className={[
-                    'card-base relative flex h-full w-full flex-col overflow-visible p-[20px] xl:p-[22px]',
-                    cardMinHeight,
+                    'card-base relative flex h-full w-full flex-col overflow-visible p-[22px] xl:p-[24px]',
                     featured
-                      ? 'card-dark border-[2px] border-brand bg-ink text-paper ring-1 ring-brand/10'
-                      : 'card-light bg-panel text-ink ring-1 ring-border/10',
+                      ? 'card-featured'
+                      : 'card-light text-ink',
                   ].join(' ')}
                 >
-                  {featured ? (
-                    <span className="absolute left-1/2 top-0 inline-flex -translate-x-1/2 -translate-y-[12px] items-center rounded-[12px] bg-brand px-[14px] py-[4px] font-body text-[10px] font-black uppercase leading-[15px] tracking-[1px] text-paper xl:-translate-y-[14px] xl:px-[16px]">
-                      {tier.badge}
-                    </span>
-                  ) : null}
-
-                  <div className={[cardWidth, 'flex h-full w-full flex-col'].join(' ')}>
-                    <div className={introPadding}>
-                      <div className="pb-[6px] xl:pb-[8px]">
-                        <p className={['font-display text-[15px] font-bold uppercase leading-[22px] tracking-[1.4px] xl:text-[16px] xl:leading-[24px] xl:tracking-[1.6px]', featured ? 'text-brand' : 'text-muted'].join(' ')}>
-                          {tier.name}
-                        </p>
-                      </div>
-
-                      <p className={['font-body text-[13px] font-semibold leading-[18px] xl:text-[14px] xl:leading-[20px]', featured ? 'text-paper' : 'text-ink'].join(' ')}>
+                  <div className="flex h-full w-full flex-col">
+                    <div className="border-b border-border/15 pb-[18px]">
+                      <p className={['font-display text-[16px] font-bold uppercase leading-[24px] tracking-[1.6px]', featured ? 'text-brand' : 'text-muted'].join(' ')}>
+                        {tier.name}
+                      </p>
+                      <p className={['mt-[10px] font-body text-[27px] font-black leading-[33px]', featured ? 'text-paper' : 'text-ink'].join(' ')}>
+                        {tier.price}
+                      </p>
+                      <h3 className={['mt-[14px] font-display text-[18px] font-extrabold leading-[25px]', featured ? 'text-paper' : 'text-ink'].join(' ')}>
                         {tier.subtitle}
+                      </h3>
+                      <p className={['mt-[8px] font-body text-[14px] font-medium leading-[21px]', featured ? 'text-faded' : 'text-muted'].join(' ')}>
+                        {tier.description}
                       </p>
                     </div>
 
-                    <div className={['flex items-end gap-[4px]', pricePadding].join(' ')}>
-                      <span className={['font-body text-[28px] font-black leading-[32px] xl:text-[30px] xl:leading-[36px]', featured ? 'text-paper' : 'text-ink'].join(' ')}>
-                        {tier.price}
-                      </span>
-
-                      <span className={['font-body text-[13px] font-normal leading-[18px] xl:text-[14px] xl:leading-[20px]', featured ? 'text-faded' : 'text-muted'].join(' ')}>
-                        {tier.cadence}
-                      </span>
+                    <div className="py-[18px]">
+                      <h4 className={['mb-[12px] font-display text-[13px] font-bold uppercase leading-[18px] tracking-[1.2px]', featured ? 'text-paper' : 'text-ink'].join(' ')}>
+                        {tier.featuresTitle}
+                      </h4>
+                      <FeatureList items={tier.features} featured={featured} />
                     </div>
 
-                    <div className={['flex flex-1 flex-col', listPadding].join(' ')}>
-                      <ul className="flex flex-col items-start gap-[8px] xl:gap-[10px]">
-                        {tier.features.map((feature) => (
-                          <li key={feature} className="flex w-full items-center gap-[12px]">
-                            <TierCheck className={featured ? 'h-[9.47px] w-[12.84px]' : 'h-[9.02px] w-[12.23px]'} />
-
-                            <span className={['font-body text-[13px] font-normal leading-[18px] xl:text-[14px] xl:leading-[20px]', featured ? 'text-faded' : 'text-muted'].join(' ')}>
-                              {feature}
-                            </span>
-                          </li>
-                        ))}
-
-                        {tier.callout ? (
-                          <li className="flex w-full items-start gap-[12px] pt-[2px] xl:pt-[6px]">
-                            <TierCheck className={featured ? 'h-[11.02px] w-[11.02px]' : 'h-[10.5px] w-[10.5px]'} />
-
-                            <span className={['font-body text-[13px] font-bold leading-[18px] xl:text-[14px] xl:leading-[20px]', featured ? 'text-paper' : 'text-ink'].join(' ')}>
-                              {tier.callout}
-                            </span>
-                          </li>
-                        ) : null}
-                      </ul>
+                    <div className={['mt-auto border-t pt-[18px]', featured ? 'border-paper/10' : 'border-border/15'].join(' ')}>
+                      <h4 className={['font-display text-[13px] font-bold uppercase leading-[18px] tracking-[1.2px]', featured ? 'text-paper' : 'text-ink'].join(' ')}>
+                        {tier.idealTitle}
+                      </h4>
+                      <p className={['mt-[8px] font-body text-[14px] font-semibold leading-[21px]', featured ? 'text-faded' : 'text-muted'].join(' ')}>
+                        {tier.ideal}
+                      </p>
+                      <a href="#contact" className="btn-primary mt-[18px] w-full">
+                        {tier.cta}
+                      </a>
                     </div>
-
                   </div>
                 </article>
               </Reveal>
@@ -105,28 +99,66 @@ export function PricingSection({ pricing }) {
           })}
         </div>
 
-        <Reveal delay={0.08} className="mx-auto flex w-full max-w-[992px] justify-center pt-[12px] lg:pt-[10px] xl:pt-[14px]">
-          <a href="#contact" className="btn-primary w-full max-w-[320px]">
-            {pricing.sectionCtaLabel}
-          </a>
+        {replacementTier ? (
+          <Reveal delay={0.06} className="mx-auto mt-[28px] w-full max-w-[1216px]">
+            <div className="card-base card-dark grid gap-[24px] p-[24px] sm:p-[32px] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-[48px]">
+              <div>
+                <h3 className="font-display text-[15px] font-bold uppercase leading-[21px] tracking-[1.4px] text-brand">
+                  {replacementTier.replacementTitle}
+                </h3>
+                <p className="mt-[12px] font-body text-[16px] font-semibold leading-[24px] text-paper">
+                  {replacementTier.replacementIntro}
+                </p>
+                <p className="mt-[14px] font-body text-[15px] font-semibold leading-[23px] text-faded">
+                  {replacementTier.replacementSummary}
+                </p>
+              </div>
+
+              <div className="grid gap-[10px] sm:grid-cols-3 lg:grid-cols-1">
+                {replacementTier.replacements.map((item) => (
+                  <div key={item} className="flex items-start gap-[12px] rounded-[12px] border border-paper/10 bg-paper/[0.04] px-[14px] py-[12px]">
+                    <span className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-[10px] border border-brand/25 bg-brand/10">
+                      <TierCheck className="h-[9px] w-[12px]" />
+                    </span>
+                    <span className="pt-[3px] font-body text-[14px] font-semibold leading-[21px] text-paper">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        ) : null}
+
+        <Reveal delay={0.08} className="mx-auto mt-[28px] w-full max-w-[1216px]">
+          <div className="card-base card-light grid items-center gap-[24px] p-[24px] sm:p-[32px] lg:grid-cols-[minmax(0,1fr)_auto]">
+            <div>
+              <h3 className="font-display text-[24px] font-extrabold leading-[32px] text-ink">{pricing.custom.title}</h3>
+              <div className="mt-[12px] flex flex-col gap-[6px]">
+                {pricing.custom.lines.map((line) => (
+                  <p key={line} className="font-body text-[15px] font-semibold leading-[23px] text-muted">{line}</p>
+                ))}
+              </div>
+            </div>
+            <a href="#contact" className="btn-primary w-full lg:w-auto lg:whitespace-nowrap">
+              {pricing.custom.cta}
+            </a>
+          </div>
         </Reveal>
 
-        <Reveal delay={0.12} className="mx-auto w-full max-w-[992px] pt-[10px] lg:pt-[8px] xl:pt-[10px]">
-          <div className="mx-auto flex w-full max-w-[992px] flex-col items-center gap-[6px] rounded-[4px] border border-border/10 bg-surface px-[12px] py-[8px] xl:px-[16px] xl:py-[10px]">
-            <div className="flex flex-wrap items-center justify-center gap-x-[16px] gap-y-[6px]">
-              {trustSignals.map((signal) => (
-                <span key={signal} className="inline-flex items-center gap-[8px] font-body text-[12px] font-[600] leading-[16px] text-muted">
-                  <span className="h-[6px] w-[6px] rounded-[999px] bg-brand" />
-                  {signal}
-                </span>
+        <Reveal delay={0.12} className="mx-auto mt-[28px] w-full max-w-[1216px]">
+          <div className="card-base card-light p-[24px] sm:p-[32px]">
+            <h3 className="text-center font-display text-[22px] font-extrabold leading-[30px] text-ink">
+              {pricing.includedTitle}
+            </h3>
+            <ul className="mt-[22px] grid gap-x-[24px] gap-y-[12px] sm:grid-cols-2 lg:grid-cols-3">
+              {pricing.included.map((item) => (
+                <li key={item} className="flex items-start gap-[12px]">
+                  <span className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-[10px] border border-brand/20 bg-brand/10">
+                    <TierCheck className="h-[9px] w-[12px]" />
+                  </span>
+                  <span className="pt-[3px] font-body text-[14px] font-semibold leading-[21px] text-ink">{item}</span>
+                </li>
               ))}
-            </div>
-
-            {footnote ? (
-              <p className="text-center font-body text-[12px] font-[500] leading-[17px] text-muted xl:text-[13px] xl:leading-[18px]">
-                {footnote}
-              </p>
-            ) : null}
+            </ul>
           </div>
         </Reveal>
       </div>

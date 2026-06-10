@@ -50,12 +50,14 @@ export function Footer({ footer }) {
         <Reveal className="flex w-full flex-col items-start gap-[40px] lg:flex-row lg:items-start lg:justify-start lg:gap-[96px] xl:gap-[128px]">
           <div className="flex w-full max-w-[296px] flex-col items-start gap-[14px]">
             <a href="#home" className="font-body text-[24px] font-black leading-[32px] text-[#F8FAFC]">
-              WeRunOps.
+              {footer.brand}
             </a>
 
-            <p className="w-full max-w-[292px] font-body text-[14px] font-medium leading-[23px] text-[#CBD5E1]">
-              {footer.blurb}
-            </p>
+            <div className="flex w-full max-w-[292px] flex-col gap-[8px]">
+              <p className="font-body text-[15px] font-bold leading-[23px] text-[#F8FAFC]">{footer.tagline}</p>
+              <p className="font-body text-[14px] font-medium leading-[23px] text-[#CBD5E1]">{footer.services}</p>
+              <p className="font-body text-[14px] font-medium leading-[23px] text-[#CBD5E1]">{footer.support}</p>
+            </div>
           </div>
 
           <div className="flex w-full max-w-[620px] flex-col items-start gap-[28px] sm:flex-row sm:items-start sm:justify-start sm:gap-[40px] lg:gap-[56px]">

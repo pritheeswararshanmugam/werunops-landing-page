@@ -27,7 +27,7 @@ export function SectionHeading({ eyebrow, title, description, dark = false, alig
       ].join(' ')}
     >
       {eyebrow ? (
-        <span className="font-body text-[12px] font-bold uppercase leading-[16px] tracking-[0.2em] text-brand">
+        <span className="font-body text-[12px] font-bold uppercase leading-[16px] tracking-[0.2em] text-brandText">
           {eyebrow}
         </span>
       ) : null}

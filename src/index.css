@@ -9,6 +9,7 @@
   --anchor-offset: 92px;
   --color-ink: 9 20 38;
   --color-brand: 235 105 5;
+  --color-brand-text: 196 85 0;
   --color-paper: 255 255 255;
   --color-surface: 247 249 251;
   --color-panel: 242 244 246;
@@ -75,7 +76,7 @@
   }
 
   .eyebrow {
-    @apply font-body text-[0.72rem] font-black uppercase tracking-[0.28em] text-brand;
+    @apply font-body text-[0.72rem] font-black uppercase tracking-[0.28em] text-brandText;
   }
 
   .panel-card {
@@ -86,8 +87,7 @@
     @apply rounded-[0.25rem] border border-white/5 bg-card shadow-soft;
   }
 
-  .surface-texture,
-  .bg-surface {
+  .surface-texture {
     background-color: rgb(var(--color-surface));
     background-image:
       radial-gradient(circle at 1px 1px, rgb(var(--color-ink) / 0.032) 0.75px, transparent 0.9px),
@@ -99,8 +99,7 @@
     background-position: 0 0, 0 0, 100% 100%, 0 0, 0 0;
   }
 
-  .paper-texture,
-  .bg-paper {
+  .paper-texture {
     background-color: rgb(var(--color-paper));
     background-image:
       radial-gradient(circle at 1px 1px, rgb(var(--color-ink) / 0.028) 0.7px, transparent 0.85px),
@@ -117,11 +116,59 @@
   }
 
   .card-light {
-    @apply border-border/10 bg-paper shadow-[0px_18px_30px_-24px_rgba(9,20,38,0.32)];
+    @apply border-ink/10 bg-paper;
+    box-shadow:
+      0 20px 42px -30px rgb(var(--color-ink) / 0.5),
+      0 1px 2px rgb(var(--color-ink) / 0.06);
   }
 
   .card-dark {
-    @apply border-paper/10 bg-card/[0.92] shadow-[0px_18px_30px_-24px_rgba(0,0,0,0.72)];
+    @apply border-paper/[0.12] bg-card;
+    box-shadow:
+      0 20px 42px -30px rgb(0 0 0 / 0.78),
+      0 1px 2px rgb(0 0 0 / 0.22);
+  }
+
+  .card-featured {
+    @apply border-2 border-brand bg-ink text-paper;
+    box-shadow:
+      0 24px 48px -30px rgb(var(--color-brand) / 0.65),
+      0 1px 2px rgb(0 0 0 / 0.28);
+  }
+
+  .card-compact {
+    @apply p-[18px];
+  }
+
+  .panel-shell {
+    @apply rounded-[16px] border border-ink/10 bg-paper;
+    box-shadow:
+      0 22px 46px -30px rgb(var(--color-ink) / 0.52),
+      0 1px 2px rgb(var(--color-ink) / 0.07);
+  }
+
+  .panel-shell--prominent {
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.22);
+  }
+
+  .icon-tile {
+    @apply inline-flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-[14px] border border-brand/20 bg-brand/[0.1] text-brand;
+  }
+
+  .icon-tile--compact {
+    @apply h-[42px] w-[42px] rounded-[13px];
+  }
+
+  .icon-tile--large {
+    @apply h-[60px] w-[60px] rounded-[15px];
+  }
+
+  .elevation-deep {
+    box-shadow: 0 25px 50px -12px rgb(var(--color-ink) / 0.25);
+  }
+
+  .elevation-surface {
+    box-shadow: 0 1px 2px rgb(var(--color-ink) / 0.08);
   }
 
   .btn-primary {
