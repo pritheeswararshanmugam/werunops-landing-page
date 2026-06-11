@@ -231,4 +231,23 @@
   .form-input--datetime:not(:focus):invalid::-webkit-datetime-edit-ampm-field {
     color: rgb(var(--color-muted) / 0.52);
   }
+
+  .legal-dialog {
+    width: min(720px, calc(100vw - 32px));
+    max-width: none;
+    max-height: min(84vh, 800px);
+    margin: auto;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 16px;
+    background: rgb(var(--color-paper));
+    color: rgb(var(--color-ink));
+    box-shadow: 0 32px 80px -28px rgb(0 0 0 / 0.72);
+  }
+
+  .legal-dialog::backdrop {
+    background: rgb(var(--color-ink) / 0.74);
+    backdrop-filter: blur(4px);
+  }
 }

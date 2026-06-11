@@ -1,3 +1,7 @@
+import { cancellationPolicy } from './legal/cancellationPolicy';
+import { privacyPolicy } from './legal/privacyPolicy';
+import { termsAndConditions } from './legal/termsAndConditions';
+
 const PRIMARY_CTA_LABEL = 'Book Your Free Operations Health Check';
 
 export const landingContent = {
@@ -9,7 +13,7 @@ export const landingContent = {
     { label: 'Pricing', href: '#pricing' },
   ],
   hero: {
-    eyebrow: "Australia's Operations Partner for Roofing & Trade Businesses",
+    eyebrow: 'WeRun Ops is an operations partner for Australian roofing and trade businesses.',
     titleLeadLines: ['You Handle the Work.'],
     titleAccentLines: ['We Handle', 'Everything Else.'],
     description:
@@ -173,6 +177,8 @@ export const landingContent = {
     },
   },
   pricing: {
+    valueStatement:
+      'Our service is designed to pay for itself—helping you reduce costly estimating errors, protect your margins, and increase profitability on every project',
     eyebrow: 'CHOOSE YOUR LEVEL OF SUPPORT',
     title: 'Flexible Operations Support That Grows With Your Business',
     description:
@@ -351,13 +357,29 @@ export const landingContent = {
       { label: 'Pricing', href: '#pricing' },
     ],
     legalLinks: [
-      { label: 'Privacy', href: '#contact' },
-      { label: 'Terms', href: '#contact' },
-      { label: 'Policy', href: '#contact' },
+      { label: 'Privacy', documentId: 'privacy' },
+      { label: 'Terms and Conditions', documentId: 'terms' },
+      { label: 'Policy', documentId: 'cancellation' },
     ],
+    legalDocuments: {
+      privacy: privacyPolicy,
+      terms: termsAndConditions,
+      cancellation: cancellationPolicy,
+    },
     contact: [
       { label: 'Address', value: 'Sydney, NSW' },
-      { label: 'Email', value: 'admin@werunops.com.au', href: 'mailto:admin@werunops.com.au' },
+      {
+        label: 'Email',
+        value: 'admin@werunops.com.au',
+        href: 'mailto:admin@werunops.com.au',
+        kind: 'email',
+      },
+      {
+        label: 'WhatsApp',
+        value: '+61 485 666 413',
+        href: 'https://wa.me/61485666413',
+        kind: 'whatsapp',
+      },
     ],
   },
 };

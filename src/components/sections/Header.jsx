@@ -56,10 +56,15 @@ export function Header({ navItems, cta, brand = landingContent.footer.brand }) {
       <div className="mx-auto box-border flex h-[72px] w-full max-w-[1280px] items-center justify-between px-[20px] sm:px-[24px] md:px-[32px] xl:grid xl:grid-cols-[105px_minmax(0,1fr)_270px] xl:gap-[24px]">
         <a
           href="#home"
-          className="w-[104.98px] font-body text-[20px] font-[900] leading-[28px] tracking-[-1px] text-ink"
+          className="w-[104.98px] whitespace-nowrap font-body text-[20px] font-[900] leading-[28px] tracking-[-1px] text-ink"
           onClick={(event) => handleNavClick(event, '#home')}
+          aria-label={brand === 'WeRunOps.' ? 'WeRun Ops.' : brand}
         >
-          {brand}
+          <span aria-hidden="true">
+            <span className="text-ink">WeRun </span>
+            <span className="text-brand">Ops</span>
+            <span className="text-ink">.</span>
+          </span>
         </a>
 
         <nav className="hidden h-[24px] items-center justify-center gap-[24px] xl:flex">

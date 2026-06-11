@@ -32,6 +32,9 @@ export function PricingSection({ pricing }) {
       <div className="mx-auto flex w-full max-w-[1280px] flex-col px-[20px] sm:px-[24px] md:px-[32px]">
         <Reveal className="w-full">
           <div className="mx-auto flex max-w-[900px] flex-col items-center gap-[12px] text-center">
+            <p className="mb-[12px] max-w-[880px] font-display text-[17px] font-semibold leading-[26px] text-ink sm:text-[18px] sm:leading-[28px]">
+              {pricing.valueStatement}
+            </p>
             <p className="font-display text-[12px] font-bold uppercase leading-[16px] tracking-[2.4px] text-brandText">
               {pricing.eyebrow}
             </p>
