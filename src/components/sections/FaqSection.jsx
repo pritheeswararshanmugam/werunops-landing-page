@@ -1,4 +1,5 @@
 import { Reveal } from '../ui/Reveal';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 function FaqIcon({ index }) {
   const common = 'h-[26px] w-[26px]';
@@ -48,7 +49,39 @@ function FaqIcon({ index }) {
 }
 
 export function FaqSection({ objection, trust }) {
+  const isCompact = useMediaQuery('(max-width: 1023px)');
   const items = [...objection.items, ...trust.items];
+
+  if (isCompact) {
+    return (
+      <section id="faq" className="bg-ink px-[16px] py-[56px] text-paper sm:px-[24px] sm:py-[68px] md:px-[32px]">
+        <div className="mx-auto w-full max-w-[720px]">
+          <h2 className="text-center font-display text-[30px] font-extrabold leading-[36px] tracking-[-0.7px] text-paper sm:text-[34px] sm:leading-[40px]">
+            {objection.title}
+          </h2>
+
+          <div className="mt-[28px] flex flex-col gap-[10px]">
+            {items.map((item, index) => (
+              <details key={item.question} className="mobile-faq">
+                <summary>
+                  <span className="icon-tile icon-tile--compact flex-none">
+                    <FaqIcon index={index} />
+                  </span>
+                  <span className="min-w-0 flex-1 font-body text-[15px] font-bold leading-[22px] text-paper">
+                    {item.question}
+                  </span>
+                  <span className="mobile-disclosure__icon shrink-0" aria-hidden="true" />
+                </summary>
+                <p className="border-t border-paper/10 px-[16px] pb-[16px] pt-[14px] font-body text-[14px] font-normal leading-[22px] text-faded">
+                  {item.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="faq" className="bg-ink px-[20px] py-[88px] text-paper sm:px-[24px] md:px-[32px] lg:py-[104px]">

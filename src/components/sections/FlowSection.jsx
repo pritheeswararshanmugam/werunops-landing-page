@@ -1,4 +1,5 @@
 import { Reveal } from '../ui/Reveal';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 function FlowIcon({ step }) {
   const common = 'h-[26px] w-[26px]';
@@ -79,8 +80,12 @@ function HelpIcon({ index }) {
 }
 
 export function FlowSection({ flow }) {
+  const isCompact = useMediaQuery('(max-width: 1023px)');
+  const visibleHelpItems = isCompact ? flow.helpItems.slice(0, 3) : flow.helpItems;
+  const additionalHelpItems = flow.helpItems.slice(3);
+
   return (
-    <section id="system" className="surface-texture border-t border-border/20 bg-surface py-[88px] lg:py-[104px] xl:py-[112px]">
+    <section id="system" className="surface-texture border-t border-border/20 bg-surface py-[56px] sm:py-[68px] lg:py-[104px] xl:py-[112px]">
       <div className="container-shell">
         <div className="mx-auto flex w-full max-w-[1216px] flex-col items-center">
           <Reveal className="w-full">
@@ -98,7 +103,7 @@ export function FlowSection({ flow }) {
           </Reveal>
 
           <Reveal className="w-full" delay={0.04}>
-            <div className="mt-[32px] w-full lg:mt-[44px] xl:mt-[52px]">
+            <div className="mt-[26px] w-full lg:mt-[44px] xl:mt-[52px]">
               <div className="relative grid grid-cols-2 gap-x-[14px] gap-y-[20px] lg:grid-cols-6 lg:gap-y-0">
                 <div className="absolute left-[8.333%] right-[8.333%] top-[31px] hidden h-[2px] bg-border/55 lg:block" />
 
@@ -134,20 +139,20 @@ export function FlowSection({ flow }) {
                 })}
               </div>
 
-              <p className="mt-[28px] text-center font-display text-[20px] font-extrabold leading-[28px] tracking-[-0.04em] text-ink lg:mt-[34px] xl:text-[24px] xl:leading-[32px]">
+              <p className="mt-[24px] text-center font-display text-[18px] font-extrabold leading-[26px] tracking-[-0.04em] text-ink lg:mt-[34px] lg:text-[20px] lg:leading-[28px] xl:text-[24px] xl:leading-[32px]">
                 {flow.bridge}
               </p>
             </div>
           </Reveal>
 
           <Reveal className="w-full" delay={0.08}>
-            <div className="mt-[48px] w-full border-t border-border/20 pt-[40px]">
-              <h3 className="text-center font-display text-[24px] font-extrabold leading-[32px] text-ink">
+            <div className="mt-[36px] w-full border-t border-border/20 pt-[32px] lg:mt-[48px] lg:pt-[40px]">
+              <h3 className="text-center font-display text-[22px] font-extrabold leading-[30px] text-ink lg:text-[24px] lg:leading-[32px]">
                 {flow.helpTitle}
               </h3>
 
               <ul className="mx-auto mt-[24px] grid w-full max-w-[1040px] gap-[14px] md:grid-cols-2 lg:grid-cols-3">
-                {flow.helpItems.map((item, index) => (
+                {visibleHelpItems.map((item, index) => (
                   <li key={item} className="card-base card-light card-compact flex min-h-[76px] items-center gap-[12px]">
                     <HelpIcon index={index} />
                     <span className="font-body text-[14px] font-semibold leading-[21px] text-ink">{item}</span>
@@ -155,7 +160,24 @@ export function FlowSection({ flow }) {
                 ))}
               </ul>
 
-              <div className="mx-auto mt-[32px] max-w-[880px] text-center">
+              {isCompact && additionalHelpItems.length ? (
+                <details className="mobile-disclosure mx-auto mt-[12px] max-w-[1040px]">
+                  <summary>
+                    <span>See more ways we help</span>
+                    <span className="mobile-disclosure__icon" aria-hidden="true" />
+                  </summary>
+                  <ul className="grid gap-[12px] pt-[12px] md:grid-cols-2">
+                    {additionalHelpItems.map((item, index) => (
+                      <li key={item} className="card-base card-light card-compact flex min-h-[76px] items-center gap-[12px]">
+                        <HelpIcon index={index + 3} />
+                        <span className="font-body text-[14px] font-semibold leading-[21px] text-ink">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
+              ) : null}
+
+              <div className="mx-auto mt-[26px] max-w-[880px] text-center lg:mt-[32px]">
                 <p className="font-display text-[14px] font-bold uppercase leading-[20px] tracking-[1.4px] text-brandText">
                   {flow.resultTitle}
                 </p>

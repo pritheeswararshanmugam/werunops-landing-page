@@ -11,14 +11,17 @@ import { PricingSection } from './components/sections/PricingSection';
 import { FaqSection } from './components/sections/FaqSection';
 import { FinalCtaSection } from './components/sections/FinalCtaSection';
 import { Footer } from './components/sections/Footer';
+import { MobileActionBar } from './components/mobile/MobileActionBar';
 
 function App() {
+  const whatsapp = landingContent.footer.contact.find((item) => item.kind === 'whatsapp');
+
   return (
     <div className="bg-surface text-ink">
       <Header navItems={landingContent.navItems} brand={landingContent.footer.brand} />
 
       <main className="overflow-x-hidden">
-        <HeroSection hero={landingContent.hero} />
+        <HeroSection hero={landingContent.hero} whatsapp={whatsapp} />
         <ProblemSection problem={landingContent.problem} />
         <FlowSection flow={landingContent.flow} />
         <SolutionSection solution={landingContent.solution} />
@@ -34,6 +37,8 @@ function App() {
 
         <Footer footer={landingContent.footer} />
       </main>
+
+      <MobileActionBar primaryCta={landingContent.hero.primaryCta} whatsapp={whatsapp} />
     </div>
   );
 }

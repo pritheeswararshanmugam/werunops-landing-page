@@ -1,4 +1,5 @@
 import { Reveal } from '../ui/Reveal';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 function ControlFeatureIcon({ index }) {
   const icons = [
@@ -18,11 +19,17 @@ function ControlFeatureIcon({ index }) {
 }
 
 function ControlPanelArtwork() {
+  const isCompact = useMediaQuery('(max-width: 1023px)');
+
   return (
     <div className="relative h-full w-full overflow-hidden rounded-[12px] bg-ink">
       <img
-        src="/images/control-section.jpeg"
+        src={isCompact ? '/images/control-section-mobile.webp' : '/images/control-section.jpeg'}
         alt="Roofing and trade business operations support"
+        width={isCompact ? 640 : 1254}
+        height={isCompact ? 640 : 1254}
+        loading={isCompact ? 'lazy' : 'eager'}
+        decoding="async"
         className="h-full w-full object-contain"
       />
     </div>
@@ -31,12 +38,12 @@ function ControlPanelArtwork() {
 
 function ControlVisual({ stat }) {
   return (
-    <div className="relative mx-auto w-full max-w-[568px] pb-[40px] min-[1280px]:mx-0">
+    <div className="relative mx-auto w-full max-w-[340px] pb-[32px] lg:max-w-[568px] lg:pb-[40px] min-[1280px]:mx-0">
       <div className="elevation-deep relative aspect-square w-full rounded-[16px] border-[8px] border-frame bg-ink text-ink">
         <ControlPanelArtwork />
       </div>
 
-      <div className="elevation-deep absolute bottom-0 left-0 flex min-h-[142px] w-[82%] max-w-[320px] flex-col justify-center rounded-[8px] border-[1px] border-border/[0.102] bg-paper px-[24px] py-[20px] text-ink sm:left-[-24px] sm:min-h-[166px] sm:px-[32px]">
+      <div className="elevation-deep absolute bottom-0 left-0 flex min-h-[118px] w-[88%] max-w-[300px] flex-col justify-center rounded-[8px] border-[1px] border-border/[0.102] bg-paper px-[18px] py-[16px] text-ink sm:left-[-16px] lg:left-[-24px] lg:min-h-[166px] lg:w-[82%] lg:max-w-[320px] lg:px-[32px] lg:py-[20px]">
         <p className="font-body text-[17px] font-[900] leading-[22px] text-brandText sm:text-[18px] sm:leading-[23px]">{stat.value}</p>
         <p className="mt-[8px] font-body text-[14px] font-[700] leading-[20px] text-ink">{stat.label}</p>
         <p className="mt-[5px] font-body text-[12px] font-[400] leading-[16px] text-muted">{stat.detail}</p>
@@ -47,17 +54,17 @@ function ControlVisual({ stat }) {
 
 export function ControlSection({ control }) {
   return (
-    <section id="control" className="surface-texture border-t border-border/20 bg-section py-[96px] text-ink lg:py-[120px]">
-      <div className="relative mx-auto flex w-full max-w-[1280px] flex-col gap-[48px] px-[20px] sm:px-[24px] md:px-[32px] lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-[48px]">
-        <Reveal className="flex w-full flex-col gap-[22px] lg:min-w-0">
+    <section id="control" className="surface-texture border-t border-border/20 bg-section py-[56px] text-ink sm:py-[68px] lg:py-[120px]">
+      <div className="relative mx-auto flex w-full max-w-[1280px] flex-col gap-[36px] px-[16px] sm:px-[24px] md:px-[32px] lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center lg:gap-[48px]">
+        <Reveal className="flex w-full flex-col gap-[18px] lg:min-w-0 lg:gap-[22px]">
           <p className="font-display text-[12px] font-bold uppercase leading-[16px] tracking-[2.4px] text-brandText">
             {control.eyebrow}
           </p>
-          <h2 className="w-full max-w-[500px] font-display text-[36px] font-[800] leading-[40px] tracking-[-0.9px] text-ink min-[1280px]:w-[568px] min-[1280px]:max-w-none">
+          <h2 className="w-full max-w-[500px] font-display text-[32px] font-[800] leading-[36px] tracking-[-0.8px] text-ink lg:text-[36px] lg:leading-[40px] lg:tracking-[-0.9px] min-[1280px]:w-[568px] min-[1280px]:max-w-none">
             {control.title}
           </h2>
 
-          <div className="flex w-full max-w-[520px] flex-col gap-[16px] min-[1280px]:w-[568px] min-[1280px]:max-w-none">
+          <div className="flex w-full max-w-[520px] flex-col gap-[12px] lg:gap-[16px] min-[1280px]:w-[568px] min-[1280px]:max-w-none">
             {control.features.map((feature, index) => (
               <div key={feature} className="flex min-h-[50px] w-full items-center gap-[16px]">
                 <span className="icon-tile elevation-surface bg-paper text-ink">
@@ -70,7 +77,7 @@ export function ControlSection({ control }) {
             ))}
           </div>
 
-          <p className="w-full max-w-[500px] border-l-[4px] border-brand py-[6px] pl-[20px] font-display text-[20px] font-[700] leading-[28px] text-ink min-[1280px]:w-[568px] min-[1280px]:max-w-none">
+          <p className="w-full max-w-[500px] border-l-[4px] border-brand py-[6px] pl-[18px] font-display text-[18px] font-[700] leading-[26px] text-ink lg:pl-[20px] lg:text-[20px] lg:leading-[28px] min-[1280px]:w-[568px] min-[1280px]:max-w-none">
             {control.callout}
           </p>
         </Reveal>

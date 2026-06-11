@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { landingContent } from '../../data/landingContent';
 
@@ -31,6 +31,23 @@ export function Header({ navItems, cta, brand = landingContent.footer.brand }) {
   const ctaClassName =
     'btn-primary btn-primary--sm !px-[16px] !text-[11px] !leading-[15px] !tracking-[0.08em]';
 
+  useEffect(() => {
+    document.body.classList.toggle('mobile-navigation-open', isOpen);
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.classList.remove('mobile-navigation-open');
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen]);
+
   function handleNavClick(event, href, closeMenu = false) {
     if (!href?.startsWith('#')) {
       if (closeMenu) {
@@ -53,10 +70,10 @@ export function Header({ navItems, cta, brand = landingContent.footer.brand }) {
 
   return (
     <header data-site-header="true" className="sticky top-0 z-50 border-b border-[rgb(var(--color-border)/0.22)] bg-[rgb(var(--color-paper)/0.84)] shadow-[0px_12px_32px_-24px_rgba(9,20,38,0.4)] backdrop-blur-md">
-      <div className="mx-auto box-border flex h-[72px] w-full max-w-[1280px] items-center justify-between px-[20px] sm:px-[24px] md:px-[32px] xl:grid xl:grid-cols-[105px_minmax(0,1fr)_270px] xl:gap-[24px]">
+      <div className="mx-auto box-border flex h-[64px] w-full max-w-[1280px] items-center justify-between px-[16px] sm:px-[24px] md:px-[32px] lg:h-[72px] xl:grid xl:grid-cols-[105px_minmax(0,1fr)_270px] xl:gap-[24px]">
         <a
           href="#home"
-          className="w-[104.98px] whitespace-nowrap font-body text-[20px] font-[900] leading-[28px] tracking-[-1px] text-ink"
+          className="w-[116px] whitespace-nowrap font-body text-[20px] font-[900] leading-[28px] tracking-[-1px] text-ink lg:w-[104.98px]"
           onClick={(event) => handleNavClick(event, '#home')}
           aria-label={brand === 'WeRunOps.' ? 'WeRun Ops.' : brand}
         >
@@ -129,7 +146,7 @@ export function Header({ navItems, cta, brand = landingContent.footer.brand }) {
             transition={{ duration: 0.24, ease: 'easeOut' }}
             className="overflow-hidden border-t-[1px] border-[rgb(var(--color-border)/0.18)] bg-[rgb(var(--color-paper)/0.92)] backdrop-blur-md xl:hidden"
           >
-            <div className="mx-auto box-border flex w-full max-w-[1280px] flex-col gap-[16px] px-[20px] py-[20px] sm:px-[24px] md:px-[32px]">
+            <div className="mx-auto box-border flex w-full max-w-[1280px] flex-col gap-[14px] px-[16px] py-[18px] sm:px-[24px] md:px-[32px] lg:gap-[16px] lg:py-[20px]">
               {navItems.map((item) => (
                 <a
                   key={item.href}

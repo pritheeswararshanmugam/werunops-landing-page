@@ -176,7 +176,7 @@ export function Footer({ footer }) {
 
   return (
     <>
-      <footer className="bg-[#0F172A] px-[32px] py-[64px] lg:py-[72px]">
+      <footer className="bg-[#0F172A] px-[20px] py-[48px] sm:px-[32px] sm:py-[64px] lg:py-[72px]">
         <div className="mx-auto w-full max-w-[1184px]">
           <Reveal className="flex w-full flex-col items-start gap-[40px] lg:flex-row lg:items-start lg:justify-start lg:gap-[96px] xl:gap-[128px]">
             <div className="flex w-full max-w-[296px] flex-col items-start gap-[14px]">

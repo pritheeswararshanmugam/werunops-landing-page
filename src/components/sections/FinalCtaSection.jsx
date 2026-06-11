@@ -93,15 +93,15 @@ export function FinalCtaSection({ finalCta }) {
   }
 
   return (
-    <section id="contact" className="surface-texture border-t border-border/20 bg-surface px-[20px] py-[80px] sm:px-[24px] md:px-[32px] lg:py-[104px]">
+    <section id="contact" className="surface-texture border-t border-border/20 bg-surface px-[16px] py-[56px] sm:px-[24px] sm:py-[68px] md:px-[32px] lg:py-[104px]">
       <div className="mx-auto flex w-full max-w-[1280px] justify-center">
         <div className="panel-shell panel-shell--prominent grid w-full max-w-[1216px] overflow-hidden lg:min-h-[500px] lg:grid-cols-2">
-          <Reveal className="bg-ink px-[24px] py-[36px] text-paper sm:px-[32px] sm:py-[44px] lg:px-[64px] lg:pb-[96px] lg:pt-[64px]">
+          <Reveal className="bg-ink px-[20px] py-[32px] text-paper sm:px-[32px] sm:py-[44px] lg:px-[64px] lg:pb-[96px] lg:pt-[64px]">
             <div className="mx-auto flex w-full max-w-[448px] flex-col gap-[16px] lg:mx-0 lg:gap-[18px]">
               <p className="font-display text-[12px] font-bold uppercase leading-[16px] tracking-[2.4px] text-brand">
                 {finalCta.eyebrow}
               </p>
-              <h2 className="max-w-[448px] font-display text-[40px] font-extrabold leading-[40px] tracking-[-1px] text-paper lg:min-h-[120px] lg:text-display-hero">
+              <h2 className="max-w-[448px] font-display text-[34px] font-extrabold leading-[37px] tracking-[-0.85px] text-paper sm:text-[40px] sm:leading-[40px] sm:tracking-[-1px] lg:min-h-[120px] lg:text-display-hero">
                 {finalCta.title}
               </h2>
               <p className="max-w-[448px] text-[18px] leading-[28px] text-faded">{finalCta.description}</p>
@@ -133,7 +133,7 @@ export function FinalCtaSection({ finalCta }) {
             </div>
           </Reveal>
 
-          <Reveal delay={0.08} className="bg-paper px-[24px] py-[36px] sm:px-[32px] sm:py-[44px] lg:px-[64px] lg:pb-[64px] lg:pt-[64px]">
+          <Reveal delay={0.08} className="bg-paper px-[20px] py-[32px] sm:px-[32px] sm:py-[44px] lg:px-[64px] lg:pb-[64px] lg:pt-[64px]">
             <form
               name={NETLIFY_FORM_NAME}
               method="POST"

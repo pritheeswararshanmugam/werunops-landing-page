@@ -1,5 +1,6 @@
 import { Reveal } from '../ui/Reveal';
 import { SectionHeading } from '../ui/SectionHeading';
+import { useMediaQuery } from '../../hooks/useMediaQuery';
 
 function TierCheck({ className = '' }) {
   return (
@@ -24,8 +25,131 @@ function FeatureList({ items, featured = false }) {
   );
 }
 
-export function PricingSection({ pricing }) {
+function MobileTier({ tier }) {
+  const featured = Boolean(tier.featured);
+
+  return (
+    <details
+      className={[
+        'mobile-package',
+        featured ? 'mobile-package--featured' : '',
+      ].join(' ')}
+    >
+      <summary>
+        <span className="min-w-0">
+          <span className={['block font-display text-[13px] font-bold uppercase leading-[18px] tracking-[1.4px]', featured ? 'text-brand' : 'text-muted'].join(' ')}>
+            {tier.name}
+          </span>
+          <span className={['mt-[4px] block font-body text-[22px] font-black leading-[28px]', featured ? 'text-paper' : 'text-ink'].join(' ')}>
+            {tier.price}
+          </span>
+          <span className={['mt-[5px] block font-display text-[15px] font-bold leading-[22px]', featured ? 'text-paper' : 'text-ink'].join(' ')}>
+            {tier.subtitle}
+          </span>
+        </span>
+        <span className="mobile-disclosure__icon shrink-0" aria-hidden="true" />
+      </summary>
+
+      <div className={['border-t pt-[16px]', featured ? 'border-paper/10' : 'border-border/20'].join(' ')}>
+        <p className={['font-body text-[14px] font-medium leading-[22px]', featured ? 'text-faded' : 'text-muted'].join(' ')}>
+          {tier.description}
+        </p>
+
+        <h3 className={['mb-[12px] mt-[18px] font-display text-[12px] font-bold uppercase leading-[18px] tracking-[1.2px]', featured ? 'text-paper' : 'text-ink'].join(' ')}>
+          {tier.featuresTitle}
+        </h3>
+        <FeatureList items={tier.features} featured={featured} />
+
+        <div className={['mt-[18px] border-t pt-[16px]', featured ? 'border-paper/10' : 'border-border/20'].join(' ')}>
+          <h3 className={['font-display text-[12px] font-bold uppercase leading-[18px] tracking-[1.2px]', featured ? 'text-paper' : 'text-ink'].join(' ')}>
+            {tier.idealTitle}
+          </h3>
+          <p className={['mt-[7px] font-body text-[14px] font-semibold leading-[22px]', featured ? 'text-faded' : 'text-muted'].join(' ')}>
+            {tier.ideal}
+          </p>
+          <a href="#contact" className="btn-primary mt-[18px] w-full">{tier.cta}</a>
+        </div>
+      </div>
+    </details>
+  );
+}
+
+function MobilePricingSection({ pricing }) {
   const replacementTier = pricing.tiers.find((tier) => tier.replacements);
+
+  return (
+    <section id="pricing" className="paper-texture border-t border-border/20 bg-paper px-[16px] py-[56px] sm:px-[24px] sm:py-[68px] md:px-[32px]">
+      <div className="mx-auto flex w-full max-w-[720px] flex-col">
+        <p className="text-center font-display text-[16px] font-semibold leading-[25px] text-ink">{pricing.valueStatement}</p>
+        <p className="mt-[22px] text-center font-display text-[12px] font-bold uppercase leading-[16px] tracking-[2.4px] text-brandText">{pricing.eyebrow}</p>
+        <h2 className="mt-[10px] text-center font-display text-[32px] font-extrabold leading-[36px] tracking-[-0.8px] text-ink">{pricing.title}</h2>
+        <p className="mx-auto mt-[12px] max-w-[620px] text-center font-body text-[15px] leading-[24px] text-muted">{pricing.description}</p>
+
+        <div className="mt-[28px] flex flex-col gap-[12px]">
+          {pricing.tiers.map((tier) => (
+            <MobileTier key={tier.name} tier={tier} />
+          ))}
+        </div>
+
+        {replacementTier ? (
+          <details className="mobile-disclosure mobile-disclosure--dark mt-[14px]">
+            <summary>
+              <span>{replacementTier.replacementTitle}</span>
+              <span className="mobile-disclosure__icon" aria-hidden="true" />
+            </summary>
+            <div className="pt-[16px]">
+              <p className="font-body text-[15px] font-semibold leading-[23px] text-paper">{replacementTier.replacementIntro}</p>
+              <ul className="mt-[12px] flex flex-col gap-[9px]">
+                {replacementTier.replacements.map((item) => (
+                  <li key={item} className="flex items-start gap-[10px] rounded-[10px] border border-paper/10 bg-paper/[0.04] px-[12px] py-[10px]">
+                    <TierCheck className="mt-[5px] h-[9px] w-[12px]" />
+                    <span className="font-body text-[14px] font-semibold leading-[21px] text-paper">{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-[12px] font-body text-[14px] font-semibold leading-[22px] text-faded">{replacementTier.replacementSummary}</p>
+            </div>
+          </details>
+        ) : null}
+
+        <div className="card-base card-light card-compact mt-[14px]">
+          <h3 className="font-display text-[21px] font-extrabold leading-[29px] text-ink">{pricing.custom.title}</h3>
+          <div className="mt-[10px] flex flex-col gap-[6px]">
+            {pricing.custom.lines.map((line) => (
+              <p key={line} className="font-body text-[14px] font-semibold leading-[22px] text-muted">{line}</p>
+            ))}
+          </div>
+          <a href="#contact" className="btn-primary mt-[18px] w-full">{pricing.custom.cta}</a>
+        </div>
+
+        <details className="mobile-disclosure mt-[14px]">
+          <summary>
+            <span>{pricing.includedTitle}</span>
+            <span className="mobile-disclosure__icon" aria-hidden="true" />
+          </summary>
+          <ul className="flex flex-col gap-[10px] pt-[14px]">
+            {pricing.included.map((item) => (
+              <li key={item} className="flex items-start gap-[10px]">
+                <span className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-[10px] border border-brand/20 bg-brand/10">
+                  <TierCheck className="h-[9px] w-[12px]" />
+                </span>
+                <span className="pt-[3px] font-body text-[14px] font-semibold leading-[21px] text-ink">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </details>
+      </div>
+    </section>
+  );
+}
+
+export function PricingSection({ pricing }) {
+  const isCompact = useMediaQuery('(max-width: 1023px)');
+  const replacementTier = pricing.tiers.find((tier) => tier.replacements);
+
+  if (isCompact) {
+    return <MobilePricingSection pricing={pricing} />;
+  }
 
   return (
     <section id="pricing" className="paper-texture border-t border-border/20 bg-paper py-[80px] lg:py-[96px]">

@@ -19,13 +19,13 @@ function ResultIcon({ index }) {
 
 export function ResultsSection({ results, cta }) {
   return (
-    <section id="results" className="bg-ink py-[96px] lg:py-[112px]">
-      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-[44px] px-[20px] sm:px-[24px] md:px-[32px] lg:gap-[52px]">
+    <section id="results" className="bg-ink py-[56px] sm:py-[68px] lg:py-[112px]">
+      <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-[32px] px-[16px] sm:px-[24px] md:px-[32px] lg:gap-[52px]">
         <Reveal className="w-full">
           <SectionHeading align="center" title={results.title} className="[&_h2]:max-w-[642.42px] [&_h2]:text-paper" />
         </Reveal>
 
-        <div className="grid gap-[14px] md:grid-cols-2 md:gap-[18px] lg:grid-cols-6">
+        <div className="mobile-card-rail flex gap-[14px] overflow-x-auto pb-[8px] lg:grid lg:grid-cols-6 lg:gap-[18px] lg:overflow-visible lg:pb-0">
           {results.cards.map((card, index) => (
             <Reveal
               key={card.stat}
@@ -33,17 +33,17 @@ export function ResultsSection({ results, cta }) {
               duration={0.4}
               y={15}
               className={[
-                'w-full lg:col-span-2',
+                'w-[82vw] max-w-[330px] shrink-0 lg:col-span-2 lg:w-full lg:max-w-none',
                 index === 3 ? 'lg:col-start-2' : '',
-                index === 4 ? 'md:col-span-2 md:mx-auto md:max-w-[calc(50%-9px)] lg:mx-0 lg:max-w-none' : '',
+                index === 4 ? 'lg:mx-0 lg:max-w-none' : '',
               ].join(' ')}
             >
-              <article className="card-base card-dark flex h-full min-h-[210px] w-full flex-col items-start gap-[18px] p-[22px] sm:p-[24px]">
+              <article className="card-base card-dark flex h-full min-h-[184px] w-full flex-col items-start gap-[16px] p-[20px] sm:p-[24px] lg:min-h-[210px] lg:gap-[18px] lg:p-[24px]">
                 <div className="flex w-full items-center gap-[14px]">
                   <span className="icon-tile">
                     <ResultIcon index={index} />
                   </span>
-                  <h3 className="font-display text-[24px] font-extrabold leading-[30px] text-brand">{card.stat}</h3>
+                  <h3 className="font-display text-[21px] font-extrabold leading-[28px] text-brand lg:text-[24px] lg:leading-[30px]">{card.stat}</h3>
                 </div>
 
                 <p className="font-body text-[14px] font-semibold leading-[22px] text-faded">{card.detail}</p>
